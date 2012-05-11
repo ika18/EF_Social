@@ -1,142 +1,69 @@
-@url: '../imgs/buttons/soc_new_buttons.png';
-@normal-height: 46px;
-@small-height: 30px;
-@smallest-height: 23px;
+// variables define
+@url: '../imgs/buttons/soc_new_buttons_v2.png';
+@normal-height: 30px;
+@small-height: 23px;
+@lager-height: 46px;
 @14px: 1.167em;
 @11px: 0.916em;
 
+// 
 .bold-font {
 	font-weight: bold;
 }
 
-
 .soc-btn {
 	display: inline-block;
 	background: url('@{url}') right 0 no-repeat transparent;
-	padding-right: 18px;
-
+	padding-right: 15px;
 	span {
 		display: inline-block;
 		background: url('@{url}') 0 0 no-repeat transparent;
 		line-height: @normal-height;
 		height: @normal-height;
-		padding-left: 18px;
+		padding-left: 15px;
 		color: #FFF;
 		font-size: @14px;
 		.bold-font;
+		i {
+			float: left;
+			margin: 5px 5px 0 0;
+		}
 	}
 }
 .soc-btn:hover {
 	text-decoration: none;
 }
 
-.soc-btn-create {
+.soc-btn-small {
+	background-position: right -45px;
 	span {
-		background-position: 0 -180px;
-		padding-left: 50px;
-	}	
-}
-
-.soc-btn-create-disabled {
-	background-position: right -240px;
-	span {
-		background-position: 0 -240px;
-		padding-left: 50px;
-	}
-}
-
-.soc-btn-browse {
-	span {
-		background-position: 0 -60px;
-		padding-left: 50px;
-	}
-}
-
-.soc-btn-camera {
-	span {
-		background-position: 0 -120px;
-		padding-left: 50px;
-	}
-}
-
-.soc-btn-s {
-	display: inline-block;
-	background: url('@{url}') right -300px no-repeat transparent;
-	padding-right: 10px;
-
-	span {
-		display: inline-block;
-		background: url('@{url}') 0 -300px no-repeat transparent;
+		background-position: 0 -45px;
 		line-height: @small-height;
 		height: @small-height;
-		padding-left: 10px;
-		color: #FFF;
 		font-size: @14px;
-		.bold-font;
-	}
-}
-.soc-btn-s:hover {
-	text-decoration: none;
-}
-
-.soc-btn-edit {
-	span {
-		background-position: 0 -380px;
-		padding-left: 30px;
 	}
 }
 
-.soc-btn-close {
+.soc-btn-large {
+	background-position: right -83px;
 	span {
-		background-position: 0 -340px;
-		padding-left: 30px;
+		background-position: 0 -83px;
+		line-height: @lager-height;
+		height: @lager-height;
+		font-size: @14px;
+		i {
+			margin: 12px 5px 0 0;
+		}
 	}
 }
 
-.soc-btn-ss {
-	display: inline-block;
-	background: url('@{url}') right -420px no-repeat transparent;
-	padding-right: 10px;
-
+.soc-btn-no-text {
+	padding-right: 7px;
 	span {
-		display: inline-block;
-		background: url('@{url}') 0 -420px no-repeat transparent;
-		line-height: @smallest-height;
-		height: @smallest-height;
-		padding-left: 10px;
-		color: #FFF;
-		font-size: @11px;
-		.bold-font;
-	}
-}
-
-.soc-btn-game {
-	span {
-		background-position: 0 -460px;
-		padding-left: 30px;
-	}
-}
-
-/*
- * button text indent
-*/
-.soc-btn-indent {
-	span {
-		text-indent: -9999px;
-		padding-left: 38px;
-	}
-}
-.soc-btn-s-indent {
-	padding-right: 3px;
-	span {
-		text-indent: -9999px;
-		padding-left: 27px;
-	}
-}
-.soc-btn-ss-indent {
-	padding-right: 3px;
-	span {
-		text-indent: -9999px;
-		padding-left: 28px;
+		padding-left: 7px;
+		i {
+			float: left;
+			margin: 5px 0 0 0;
+		}
 	}
 }
