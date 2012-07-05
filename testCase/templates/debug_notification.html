@@ -1,0 +1,42 @@
+<link rel="stylesheet/less" type="text/css" href="../css/debug.less">
+<script type="text/javascript" src="../../src/js/libs/less-1.3.0.min.js"></script>
+
+<div id="social_debug">
+	<form action="#">
+		<fieldset>
+			<div class="row">
+				<div class="label">Game notification:</div>
+				<div class="field">
+					<label>
+						<input type="radio" name="setNotification" value="1">Enable
+					</label>
+
+					<label>
+						<input type="radio" name="setNotification" value="0">Disable
+					</label>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="label">Show notification:</div>
+				<div class="field">
+					<select name="showNotification" class="long">
+						<option value="0">----------- please select -----------</option>
+						<option value="1">show single player notification</option>
+						<option value="2">show multi-player notification</option>
+						<option value="3">show Live POC</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="buttons">
+				<div class="cancel">
+					
+				</div>
+				<div class="submit">
+					<button id="closeBtn">Close widget</button>
+				</div>
+			</div>
+		</fieldset>
+	</form>
+</div>

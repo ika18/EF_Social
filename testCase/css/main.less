@@ -1,0 +1,84 @@
+#social_debug {
+	border: 1px solid @gray;
+	background-color: @grayLighter;
+	.border-radius(10px);
+	width: 450px;
+	padding: 10px;
+	overflow: hidden;
+	z-index: 99999;
+	fieldset {
+		.row {
+			margin: 10px 0;
+
+			.label,
+			label {
+				clear: left;
+				.inline-block();
+				width: 150px;
+				font-weight: bold;
+				text-align: right;
+				float: left;
+			}
+
+			.field {
+				margin-left: 5px;
+				float: left;
+				input[type=text],
+				select {
+					width: 150px;
+				}
+
+				input[type=text].long,
+				select.long {
+					width: 250px;
+				}
+
+				label {
+					.inline-block();
+					width: auto;
+					float: none;
+					clear: none;
+					margin-right: 5px;
+					font-weight: normal;
+
+					input[type=checkbox],
+					input[type=radio] {
+						margin-right: 3px;
+					}
+				}
+
+			}
+
+			.field.vertical {
+				label {
+					display: block;
+					width: auto;
+					clear: none;
+				}
+			}
+
+
+			&:after {
+				display: block;
+				content: ' ';
+				visibility: hidden;
+				clear: both;
+			}
+		}
+
+		.buttons {
+			.cancel {
+				float: left;
+				width: 150px;
+				text-align: right;
+				min-height: 1px;
+				*height: 1px;
+			}
+
+			.submit {
+				float: left;
+				margin-left: 5px;
+			}
+		}
+	}
+}
