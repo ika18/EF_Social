@@ -1,4 +1,6 @@
 @baseUrl: "../";
+@img: "../imgs/intro.png";
+
 
 /*animation key start*/
 
@@ -57,6 +59,9 @@ body {
 	.soc_tooltip_show .soc_tooltip {
 		display: block;
 	}
+	.soc_tooltip_error {
+		background-color: rgba(71, 23, 1, 0.9);
+	}
 }
 #soc_profile_list {
 	li {
@@ -73,7 +78,7 @@ body {
 		}
 	}
 	.soc_pl_fl {
-		margin-top: 0;		
+		margin-top: 0;
 	}
 	.soc_pl_right {
 		margin-right: 0;
@@ -90,6 +95,8 @@ body {
 	.soc_pl_img_box:hover,
 	.soc_pl_img_box:focus {
 		box-shadow: 0 0 5px #808080;
+		background: url("@{img}") 0 -252px no-repeat transparent~"\0"; /* hack for ie8/9 */
+		*background: url("@{img}") 0 -252px no-repeat transparent; /* hack for ie7 */
 		outline: none;
 	}
 	.soc_pl_img_border {
@@ -131,9 +138,8 @@ body {
 
 	}
 
-
-	.soc_pu_btn_webcam{
-		background: url("@{baseUrl}/imgs/hruler.png") center top no-repeat transparent;
+	.soc_pu_btn_seperator {
+		background: url("@{img}") 25px -108px no-repeat transparent
 	}
 
 	.soc_tooltip {
@@ -155,8 +161,8 @@ body {
 			background-color: #1d2023;
 			border-radius: 4px;
 			border: 1px solid black;
-			color: #696969;
 			padding: 5px;
+			color: white;
 		}
 
 		textarea:focus {
@@ -178,7 +184,8 @@ body {
 
 		#introduction_step,
 		#review_step,
-		#done_step   {
+		#done_step,
+		#error_step {
 			display: none;
 		}
 
@@ -208,6 +215,13 @@ body {
 	}
 	.soc_tooltip.done #create_step {
 		display: none;
+	}
+	.soc_tooltip.soc_tooltip_error #create_step,
+	.soc_tooltip.soc_tooltip_error #done_step {
+		display: none;
+	}
+	.soc_tooltip.soc_tooltip_error #error_step {
+		display: block;
 	}
 	#soc_detection, #soc_uploading, #soc_webcam, #soc_my_profile {
 		display: none;
@@ -269,6 +283,9 @@ body {
 	#soc_my_profile{
 		display: block;
 		position: relative;
+		width: 240px;
+		height: 240px;
+		overflow: hidden;
 	}
 }
 
@@ -320,92 +337,128 @@ body {
 
 /* icon style start */
 .soc_icon_plus {
-	background: url("@{baseUrl}/imgs/plus.png") center top no-repeat #fff;
+	background: url("@{img}") -144px 0 no-repeat #fff;
 	width: 8px;
 	height: 8px;
 }
 .soc_icon_browser {
-	background: url("@{baseUrl}/imgs/browser.png") center top no-repeat transparent;
+	background: url("@{img}") -72px 0 no-repeat transparent;
 	width: 23px;
 	height: 19px;
 }
 .soc_icon_camera {
-	background: url("@{baseUrl}/imgs/camera.png") center top no-repeat transparent;
+	background: url("@{img}") -36px 0 no-repeat transparent;
 	width: 23px;
 	height: 25px;
 }
 .soc_icon_message {
-	background: url("@{baseUrl}/imgs/message.png") center top no-repeat transparent;
+	background: url("@{img}") -108px 0 no-repeat transparent;
 	width: 23px;
 	height: 20px;
 	margin-right: 4px;
 }
 .soc_icon_close {
-	background: url("@{baseUrl}/imgs/close.png") center top no-repeat transparent;
+	background: url("@{img}") 0 0 no-repeat transparent;
 	width: 19px;
 	height: 19px;
 }
 /* icon style end */
 
-.fakeUpload input {
-	opacity: 0;
-	height: 0;
-	border: 0;
-	line-height: 0;
+.fakeUpload {
+	position: relative;
+	input {
+		height: 52px;
+		width: 112px;
+		position: absolute;
+		left: 50%;
+		margin-left: -56px;
+		opacity: 0;
+		cursor: pointer;
+	}
 }
 
 /*progress bar start*/
 #soc_uploading {
 	text-align: center;
 	padding: 75px 15px 0 15px;
-	p:nth-child(2) {
+	p {
 		font-size: 0.917em;
 		color: #807f7f;
 		margin-top: 10px;
 	}
-
-	p:nth-child(3) {
-		position: relative;
-		top: -68px;
-		line-height: 45px;
-		margin: 0;
-		text-align: left;
-		color: white;
-		text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
-		text-indent: 20px;
-		
-		strong {
-			font-size: 1.667em;
-			font-weight: bold;
-		}
-	}
-
 }
 #soc_uploading_bar {
-	/* Turns off styling - not usually needed, but good to know. */
-	appearance: none;
-	-moz-appearance: none;
-	-webkit-appearance: none;
-
-	border: solid #d7d7cf 1px;
-	border-radius: 5px;
-	width: 210px;
-	height: 45px;
+	background-color: #D7D7CF;
+	height: 42px;
+	padding: 2px;
+	-webkit-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+	-moz-box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.4), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+	box-shadow: inset 0px 1px 1px 1px rgba(0, 0, 0, 0.2), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
 }
-#soc_uploading_bar::-webkit-progress-bar {
-	background: #cccccc;
+#soc_uploading_track {
+	height: 100%;
+	width: 100%;
+	position: relative;
+	overflow: hidden;
+	background-color: #999;
 }
-#soc_uploading_bar::-webkit-progress-value {
-	border-radius: 5px;
-	background: #3592c9; /* Old browsers */
-	background: -moz-linear-gradient(top, #3592c9 0%, #1460a8 100%); /* FF3.6+ */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3592c9), color-stop(100%,#1460a8)); /* Chrome,Safari4+ */
-	background: -webkit-linear-gradient(top, #3592c9 0%, #1460a8 100%); /* Chrome10+,Safari5.1+ */
-	background: -o-linear-gradient(top, #3592c9 0%,#2989d8 0%,#1460a8 100%); /* Opera 11.10+ */
-	background: linear-gradient(top, #3592c9 0%, #1460a8 100%); /* W3C */
-}
-#soc_uploading_bar i {
-	display: block;
+#soc_progress {
+	background: url("@{img}") 0 -396px no-repeat transparent;
+	height: 100%;
+	width: 220px;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
 /*progress bar end*/
+
+/*characters countdonw*/
+#desc_msg {
+    text-align: center;
+    font-size: 10px;
+    padding: 5px 0;
+    text-shadow: 1px 1px 1px #000;
+}
+#desc_count {
+    color: #e3e000;
+}
+#soc_profile_wall #soc_profile_setup .soc_tooltip .soc_tooltip_btns {
+	margin-top: 0;
+}
+
+.soc_icon_redcross {
+	background: url("@{img}") -180px 0 no-repeat transparent;
+	width: 19px;
+	height: 19px;
+	display: inline-block;
+	vertical-align: text-bottom;
+	padding-right: 5px;
+}
+
+#soc_profile_fullview {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: none;
+  overflow: hidden;
+}
+#soc_profile_fullview .soc_profile_fullview_mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #FFF;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+#soc_profile_fullview img {
+  position: absolute;
+}
+
+#soc_img_preview {
+	position: absolute;
+}
