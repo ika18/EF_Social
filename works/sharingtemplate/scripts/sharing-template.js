@@ -1,11 +1,14 @@
 // detect web cam available or not
 function webcamAvailable () {
-	// console.log('available');
 	deleteDetection();
+
+	$('#soc_profile_setup .soc_pu_btn:eq(1)').remove();
+	$('#soc_profile_setup .soc_pu_btn:eq(0)').css({
+		'padding-top': 88
+	});
 }
 
 function noWebcamAvailable() {
-	// console.log('no');
 	deleteDetection();
 	
 	$('#soc_profile_setup .soc_pu_btn:eq(1)').remove();
