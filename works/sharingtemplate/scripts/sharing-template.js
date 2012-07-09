@@ -218,33 +218,73 @@ $(function () {
         $('#soc_profile_fullview').hide();
     };
 
-    var DescriptionValidation = function () {
-        var count = $("#desc_count");
-        var description = $("#description").textareaValidate({
-            minlimit: 15,
-            maxlimit: 300,
-            textChanged: function (vdata) {
-                //todo change the button style
-                count.text(vdata.maxlimit - vdata.length);
-            }
-        }).focus(function () {
-            $(this).css('borderColor', '#009CFF')
-        });
-
-        return description.validate().result;
-    };
 
 
-	//load template
-	$.get('templates/profile-list.html').done(function (res) {
-		parseTemplate(res);
-		bindProfileEvents();
-		DescriptionValidation();
-	}).fail(function () {
-		alert('Load template error!');
-	});
+    var DescriptionValidation = (function () {
+		function Singleton() {
+			var $count = $("#desc_count");
+	        var $description = $("#description");
+	        var maxLength = 300;
+	        var minLength = 1;
+	        var that = this;
 
-	$(window).on('click', function (e) {
+	        var getLength = function (val) {
+	        	var length = val.length;
+	        	for (var i = 0; i < this.length; i++) {
+	            if (this[i].match(/[^\x00-\xff]/g)) {
+		                length = length + 1;
+		            }
+		        }
+		        return length;
+	        };
+
+	        that.validate = false;
+
+	        $description.bind('keydown', function (e) {
+	        	if (that.val === undefined) {
+	        		return;
+	        	}
+	        	if (e.keyCode !== 8 && getLength(that.val) >= maxLength) {
+	        		return false;
+	        	}
+	        }).bind('keyup', function (e) {
+	        	that.val = $.trim($description.val());
+	        	if (getLength(that.val) >= minLength) {
+	        		that.validate = true;
+	        	}
+	        	$count.text(maxLength - getLength(that.val));
+	        });
+
+			return that.validate;
+		}
+
+		var result;
+
+		return function () {
+			if (result === undefined) {
+				result = new Singleton;
+			}
+
+			return result;
+		};
+
+	})();
+
+	var closeGreeting = function () {
+		// $(window).on('click', function (e) {
+		// 	var $me = $(e.target);
+		// 	var $soc_tooltip = $('#soc_profile_setup .soc_tooltip');
+		// 	if (!$me.closest($soc_tooltip).length) {
+		// 		$soc_tooltip.removeClass('intro');
+		// 		$profileSetup.removeClass('soc_tooltip_show');
+		// 		$(this).off(e);
+		// 	}
+		// });
+
+		$(window).on('click', closeTooltip);
+	};
+
+	var closeTooltip = function (e) {
 		var $me = $(e.target);
 		var $soc_tooltip = $('#soc_profile_setup .soc_tooltip');
 		if (!$me.closest($soc_tooltip).length) {
@@ -252,7 +292,19 @@ $(function () {
 			$profileSetup.removeClass('soc_tooltip_show');
 			$(this).off(e);
 		}
+	};
+
+
+	//load template
+	$.get('templates/profile-list.html').done(function (res) {
+		parseTemplate(res);
+		bindProfileEvents();
+		DescriptionValidation();
+		closeGreeting();
+	}).fail(function () {
+		alert('Load template error!');
 	});
+
 
 	// bind reupload image button
 	$('#reupload').click(function (e) {
@@ -260,7 +312,12 @@ $(function () {
         e.preventDefault();
         $profileSetup.removeClass();
         $profileSetup.addClass('soc_detecting');
+        $('.soc_tooltip').removeClass('review');
+        $('#description').val('');
+
         closeProfileFullview();
+
+        closeGreeting();
 	});
 
 	// upload profile 
@@ -270,23 +327,31 @@ $(function () {
 	$('#create').click(function (e) {
 		e.preventDefault();
 
-		if (!DescriptionValidation()) {
-			var $description = $('#description');
-			// TODO: add error tip animate
-            return;
-        }
-        var description = $.trim($('#description').val());
+		if (!(DescriptionValidation()).validate) {
+			$('#description').css('border-color', 'red');
+			return;
+		}
+		var descriptionVal = (DescriptionValidation()).val;
         var $this = $(this);
 
         // if the description is not empty then create it
-        if (description.length > 0) {
-        	$this.parents('.soc_tooltip').addClass('review').find('#review_step p').text(description);
+        if (descriptionVal.length > 0) {
+        	$this.parents('.soc_tooltip').addClass('review').find('#review_step p').text(descriptionVal);
 
             closeProfileFullview();
             $('#soc_my_profile img').draggable("destroy").css('cursor', 'pointer');
             
-            $('#soc_my_profile').addClass('edit');
+            closeGreeting();
+            $('#soc_my_profile').addClass('edit').click(function (e) {
+            	$(this).parents('#soc_profile_setup').addClass('soc_tooltip_show');
+            	setTimeout(closeGreeting, 100);
+            });
 
         }
+
 	});
+
+
 });
+
+
