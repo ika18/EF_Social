@@ -1,1 +1,3 @@
 #add ignore files below
+.DS_Store
+thumb.db
