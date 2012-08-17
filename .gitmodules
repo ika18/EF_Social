@@ -1,0 +1,3 @@
+[submodule "src/js/lib/troopjs-bundle"]
+	path = src/js/lib/troopjs-bundle
+	url = https://github.com/troopjs/troopjs-bundle.git
