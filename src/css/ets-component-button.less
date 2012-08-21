@@ -1,0 +1,506 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//
+//  Hierarchy:     Englishtown > School > Component > Button
+//  File:          ets-component-button.less
+//
+//////////////////////////////////////////////////////////////////////////////////////*/
+
+// Variables: background image url
+@img-ets-component-button: "../../../school-ui-shared/src/img/ets-component-button.png";
+
+// basic sub class definition for buttons start
+.blue-btn-state {
+	border: 1px solid #323b47;
+	.vgradient-bg-color(#353f4c, #3c4756);
+	.box-shadow(inset 0 1px rgba(255,255,255,.2));
+}
+.blue-btn-hover-state {
+	.vgradient-bg-color(#4d5c6e, #3f4b5a);
+	border-color: #3c4756;
+}
+.blue-btn-active-state {
+	background: #232932;
+	border-color: transparent;
+	.box-shadow(inset 0px 1px 1px rgba(0,0,0,.8));
+}
+.orange-btn-state {
+	.vgradient-bg-color(#fa6222, #e43f00);
+	border: 1px solid #f94c01;
+	.box-shadow(inset 0 1px rgba(255,255,255,.2));
+}
+.orange-btn-hover-state {
+	.vgradient-bg-color(#ff9000, #fc6109);
+	border-color: #ff7800;
+}
+.orange-btn-active-state {
+	background: #e33f00;
+	border-color: transparent;
+	.box-shadow(inset 0px 1px 1px rgba(0,0,0,.25));
+}
+.purple-btn-state {
+  .vgradient-bg-color(#F9369D, #DA0274);
+  border: 1px solid #CD0071;
+  .box-shadow(inset 0 1px rgba(255,255,255,.2));
+}
+.purple-btn-hover-state {
+  .vgradient-bg-color(#FA5BAF, #E1328F);
+  border-color: #CD0071;
+}
+.purple-btn-active-state {
+  background: #E91B88;
+  border-color: #CD0071;
+  .box-shadow(inset 0px 1px 1px rgba(0,0,0,.25));
+}
+.white-btn-state {
+	.vgradient-bg-color(#f8f8f8, #e3e3e3);
+	border: 1px solid #d1d1d1;
+	.box-shadow(inset 0 1px white);
+}
+.white-btn-hover-state {
+	.vgradient-bg-color(#fbfbfb, #f3f3f3);
+}
+.white-btn-active-state {
+	background: #dbdbdb;
+	border-color: transparent;
+	.box-shadow(inset 0px 1px 1px rgba(0,0,0,.25));
+}
+.btn-common {
+	font-size: 13px;
+	.inline-block;
+	cursor: pointer;
+	font-weight: bold;
+	color: @white;
+	text-shadow: 0 -1px rgba(0,0,0,.25);
+}
+// basic sub class definition end
+.ets-btn {
+	height: @btnHeight;
+	line-height: @btnHeight;
+	padding: 0 10px;
+	text-decoration: none;
+	.btn-common;
+	.border-radius(8px);
+	> span {
+	  text-decoration: none;
+	  width: auto;
+	}
+}
+.ets-btn-large {
+	height: @bigBtnHeight;
+	line-height: @bigBtnHeight;
+	padding: 0 16px;
+	.btn-common;
+	.border-radius(8px);
+}
+.ets-btn-small {
+	height: @smallBtnHeight;
+	line-height: @smallBtnHeight;
+	padding: 0 7px;
+	.btn-common;
+	.border-radius(4px);
+}
+
+.ets-btn-blue {
+	.blue-btn-state;
+	&:hover {
+		.blue-btn-hover-state;
+	}
+	&:active {
+		.blue-btn-active-state;
+	}
+}
+// disabled state
+.ets-btn-blue.ets-disabled {
+	color: #5f6771;
+	cursor: default;
+	.blue-btn-state;
+	&:hover {
+		.blue-btn-state;
+	}
+	&:active {
+		.blue-btn-state;
+	}
+}
+
+.ets-btn-orange {
+	.orange-btn-state;
+	&:hover {
+		.orange-btn-hover-state;
+	}
+	&:active {
+		.orange-btn-active-state;
+	}
+}
+// disabled state
+.ets-btn-orange.ets-disabled {
+	color: #f27a4a;
+	cursor: default;
+	.orange-btn-state;
+	&:hover {
+		.orange-btn-state;
+	}
+	&:active {
+		.orange-btn-state;
+	}
+}
+
+.ets-btn-purple {
+  .purple-btn-state;
+  &:hover {
+    .purple-btn-hover-state;
+  }
+  &:active {
+    .purple-btn-active-state;
+  }
+}
+// disabled state
+.ets-btn-purple.ets-disabled {
+  color: #5f6771;
+  cursor: default;
+  .blue-btn-state;
+  &:hover {
+    .blue-btn-state;
+  }
+  &:active {
+    .blue-btn-state;
+  }
+}
+
+.ets-btn-white {
+	color: #3c4756;
+	text-shadow: 0 1px rgba(255,255,255,.75);
+	.white-btn-state;
+	&:hover {
+		.white-btn-hover-state;
+	}
+	&:active {
+		.white-btn-active-state;
+	}
+}
+// disabled state
+.ets-btn-white.ets-disabled {
+	color: #c1c3c7;
+	cursor: default;
+	.white-btn-state;
+	&:hover {
+		.white-btn-state;
+	}
+	&:active {
+		.white-btn-state;
+	}
+}
+/****************************** Buttons definition end ******************************/
+
+// Shadowd buttons
+
+.ets-btn-white.ets-btn-shadowed {
+  .inline-block;
+  height: 32px;
+  padding-left: 10px;
+  background: transparent url("@{img-ets-component-button}") 0 0 no-repeat;
+  border: none;
+  cursor: pointer;
+  .box-shadow(none);
+  .border-radius(0);
+  > span {
+    display: block;
+    text-align: center;
+    padding: 0 20px 0 10px;
+    height: 32px;
+    line-height: 31px;
+    font-size: 14px;
+    color: #3C4756;
+    text-decoration: none;
+    background: transparent url("@{img-ets-component-button}") right 0 no-repeat;
+  }
+  &:hover {
+    background-position: 0 -40px;
+    > span {
+      background-position: right -40px;
+      color: #1B1F26;
+    }
+  }
+  &:active {
+    background-position: 0 -80px;
+    > span {
+      background-position: right -80px;
+      color: #1B1F26;
+    }
+  }
+}
+.ets-btn-white.ets-btn-shadowed.ets-disabled {
+  background: transparent url("@{img-ets-component-button}") 0 -120px no-repeat;
+  cursor: default;
+  > span {
+    background: transparent url("@{img-ets-component-button}") right -120px no-repeat;
+    color: #ccc;
+  }
+  &:hover {
+    background-position: 0 -120px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -120px;
+      color: #ccc;
+    }
+  }
+  &:active {
+    background-position: 0 -120px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -120px;
+      color: #ccc;
+    }
+  }
+}
+
+
+.ets-btn-blue.ets-btn-shadowed {
+  .inline-block;
+  height: 32px;
+  padding-left: 10px;
+  background: transparent url("@{img-ets-component-button}") 0 -160px no-repeat;
+  border: none;
+  cursor: pointer;
+  .box-shadow(none);
+  .border-radius(0);
+  > span {
+    display: block;
+    text-align: center;
+    padding: 0 20px 0 10px;
+    height: 32px;
+    line-height: 31px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    background: transparent url("@{img-ets-component-button}") right -160px no-repeat;
+  }
+  &:hover {
+    background-position: 0 -200px;
+    > span {
+      background-position: right -200px;
+      color: #fff;
+    }
+  }
+  &:active {
+    background-position: 0 -240px;
+    > span {
+      background-position: right -240px;
+      color: #fff;
+    }
+  }
+}
+.ets-btn-blue.ets-btn-shadowed.ets-disabled {
+  background: transparent url("@{img-ets-component-button}") 0 -280px no-repeat;
+  cursor: default;
+  > span {
+    background: transparent url("@{img-ets-component-button}") right -280px no-repeat;
+    color: #5f6771;
+  }
+  &:hover {
+    background-position: 0 -280px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -280px;
+      color: #5f6771;
+    }
+  }
+  &:active {
+    background-position: 0 -280px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -280px;
+      color: #5f6771;
+    }
+  }
+}
+
+.ets-btn-purple.ets-btn-shadowed {
+  .inline-block;
+  height: 32px;
+  padding-left: 10px;
+  background: transparent url("@{img-ets-component-button}") 0 -320px no-repeat;
+  border: none;
+  cursor: pointer;
+  .box-shadow(none);
+  .border-radius(0);
+  > span {
+    display: block;
+    text-align: center;
+    padding: 0 20px 0 10px;
+    height: 32px;
+    line-height: 31px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    background: transparent url("@{img-ets-component-button}") right -320px no-repeat;
+  }
+  &:hover {
+    background-position: 0 -360px;
+    > span {
+      background-position: right -360px;
+      color: #fff;
+    }
+  }
+  &:active {
+    background-position: 0 -400px;
+    > span {
+      background-position: right -400px;
+      color: #fff;
+    }
+  }
+}
+.ets-btn-purple.ets-btn-shadowed.ets-disabled {
+  background: transparent url("@{img-ets-component-button}") 0 -440px no-repeat;
+  cursor: default;
+  > span {
+    background: transparent url("@{img-ets-component-button}") right -440px no-repeat;
+    color: #5f6771;
+  }
+  &:hover {
+    background-position: 0 -440px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -440px;
+      color: #5f6771;
+    }
+  }
+  &:active {
+    background-position: 0 -440px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -440px;
+      color: #5f6771;
+    }
+  }
+}
+
+
+.ets-btn-purple.ets-btn-shadowed.ets-btn-large {
+  .inline-block;
+  height: 38px;
+  padding-left: 10px;
+  background: transparent url("@{img-ets-component-button}") 0 -480px no-repeat;
+  border: none;
+  cursor: pointer;
+  .box-shadow(none);
+  .border-radius(0);
+  > span {
+    display: block;
+    text-align: center;
+    padding: 0 25px 0 15px;
+    height: 38px;
+    line-height: 37px;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    background: transparent url("@{img-ets-component-button}") right -480px no-repeat;
+  }
+  &:hover {
+    background-position: 0 -520px;
+    > span {
+      background-position: right -520px;
+      color: #fff;
+    }
+  }
+  &:active {
+    background-position: 0 -560px;
+    > span {
+      background-position: right -560px;
+      color: #fff;
+    }
+  }
+}
+.ets-btn-purple.ets-btn-shadowed.ets-btn-large.ets-disabled {
+  background: transparent url("@{img-ets-component-button}") 0 -600px no-repeat;
+  cursor: default;
+  > span {
+    background: transparent url("@{img-ets-component-button}") right -600px no-repeat;
+    color: #5f6771;
+  }
+  &:hover {
+    background-position: 0 -600px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -600px;
+      color: #5f6771;
+    }
+  }
+  &:active {
+    background-position: 0 -600px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -600px;
+      color: #5f6771;
+    }
+  }
+}
+
+.ets-btn-green.ets-btn-shadowed.ets-btn-large {
+  .inline-block;
+  height: 38px;
+  padding-left: 10px;
+  background: transparent url("@{img-ets-component-button}") 0 -640px no-repeat;
+  border: none;
+  cursor: pointer;
+  .box-shadow(none);
+  .border-radius(0);
+  > span {
+    display: block;
+    text-align: center;
+    padding: 0 25px 0 15px;
+    height: 38px;
+    line-height: 37px;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    background: transparent url("@{img-ets-component-button}") right -640px no-repeat;
+  }
+  &:hover {
+    background-position: 0 -680px;
+    > span {
+      background-position: right -680px;
+      color: #fff;
+    }
+  }
+  &:active {
+    background-position: 0 -720px;
+    > span {
+      background-position: right -720px;
+      color: #fff;
+    }
+  }
+}
+.ets-btn-green.ets-btn-shadowed.ets-btn-large.ets-disabled {
+  background: transparent url("@{img-ets-component-button}") 0 -760px no-repeat;
+  cursor: default;
+  > span {
+    background: transparent url("@{img-ets-component-button}") right -760px no-repeat;
+    color: #5f6771;
+  }
+  &:hover {
+    background-position: 0 -760px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -760px;
+      color: #5f6771;
+    }
+  }
+  &:active {
+    background-position: 0 -760px;
+    border: none;
+    .box-shadow(none);
+    > span {
+      background-position: right -760px;
+      color: #5f6771;
+    }
+  }
+}

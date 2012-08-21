@@ -1,0 +1,80 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//
+//  Hierarchy:     Englishtown > School > Component > Tooltip
+//  File:          ets-component-tooltip.less
+//
+//////////////////////////////////////////////////////////////////////////////////////*/
+
+/****************************** tooltips definition start ******************************/
+// default tooltip
+.ets-tooltip {
+	width: 275px;
+	.transparent-background(18,28,35,0.75);
+	.border-radius(10px);
+	box-shadow: 0 1px 4px rgba(0,0,0,.70), inset 0 2px 1px rgba(255,255,255,.2);
+	position: absolute;
+	display: none;
+	.ets-tooltip-content {
+		color: @white;
+		padding: 16px 20px;
+		text-shadow: 0 1px @black;
+		h3 {
+			font-size: 20px;
+			font-weight: bold;
+		}
+	}
+}
+.ets-tooltip:after {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	top: 100%;
+	border-top-color: rgba(18,28,35,0.75);
+	border-width: 10px;
+	left: 50%;
+	margin-left: -10px;
+}
+
+// warning tooltip
+.ets-tooltip.ets-warning {
+	.transparent-background(71,23,1,0.9);
+	.ets-tooltip-content {
+		h3 {
+			color: #cb4a00;
+		}
+	}
+}
+.ets-tooltip.ets-warning:after {
+	border-top-color: rgba(71,23,1,0.9);
+}
+
+// liquid tooltip
+.ets-tooltip.ets-liquid {
+	width: auto;
+	.inline-block;
+	.ets-tooltip-content {
+		padding: 6px 9px;
+	}
+}
+
+// upper arrow tooltip
+.ets-tooltip.ets-upper-arrow:before {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	bottom: 100%;
+	border-bottom-color: rgba(18,28,35,0.75);
+	border-width: 10px;
+	left: 50%;
+	margin-left: -10px;
+}
+.ets-tooltip.ets-upper-arrow:after {
+	display: none;
+}
+/****************************** tooltips definition end *****************************/

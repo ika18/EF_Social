@@ -1,0 +1,76 @@
+/*///////////////////////////////////////////////////////////////////////////////////////
+//
+//  Hierarchy:     Englishtown > School > Utilities
+//  File:          ets-utilities.less
+//
+//////////////////////////////////////////////////////////////////////////////////////*/
+
+/* Clearfix */
+.ets-cf:before,
+.ets-cf:after { /* For modern browsers */
+    content:"";
+    display:table;
+}
+.ets-cf:after {
+    clear:both;
+}
+.ets-cf { /* For IE 6/7 (trigger hasLayout) */
+    *zoom:1;
+}
+
+/* Float and clear float */
+.ets-left {
+  float: left;
+}
+
+.ets-right {
+  float: right;
+}
+
+.ets-clear {
+  clear: both;
+}
+
+
+/* Display */
+.ets-none {
+  display: none;
+}
+
+.ets-inline {
+  display: inline;
+}
+
+.ets-block {
+  display: block;
+}
+
+.ets-inlineblock {
+  .inline-block();
+}
+
+.ets-hidden {
+  visibility: hidden;
+}
+
+/* Font style */
+.ets-bold {
+  font-weight: 700;
+}
+
+.ets-italic {
+  font-style: italic;
+}
+
+/* RTL */
+.ets-rtl {
+  direction: rtl;
+}
+
+/* Deal with words overflow */
+.ets-overflow
+{
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}

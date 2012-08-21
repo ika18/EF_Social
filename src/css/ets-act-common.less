@@ -1,0 +1,76 @@
+/*///////////////////////////////////////////////////////////////////////////////////////
+//
+//  Hierarchy:     Englishtown > School > Activity > Common Styles
+//  File:          ets-act-common.less
+//  Images:        
+//  Dependencies:  
+//  Description:   
+//
+//////////////////////////////////////////////////////////////////////////////////////*/
+
+
+.ets-activity {
+  width: 980px;
+  margin: 0 auto;
+  clear: both;
+  text-align: center;
+}
+
+.ets-act-hd {
+  min-height: 40px;
+  position: relative;
+}
+.ets-act-bd {
+  position: relative;
+  height: 420px;
+}
+
+.ets-act-intro {
+  padding: 15px 0;
+  font-size: 14px;
+  width: 750px;
+  line-height: 1.4;
+}
+
+.ets-act-status-pass {
+  display: none;
+  position: absolute;
+  right: 60px;
+  top: 0;
+  width: 67px;
+  height: 44px;
+  //background: url("@{ets-act-main-img}") -610px -240px no-repeat;
+}
+
+.ets-activity.ets-pass .ets-act-status-pass{
+  display: block;
+}
+
+.ets-act-hd-ap {
+  clear: both;
+  text-align: center;
+}
+
+// correct and incorrect indicator icon
+.ets-indicator {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+
+.ets-puzzle-correct,
+.ets-correct {
+  .ets-indicator {
+    .inline-block();
+    background: url('../mock/image/correct_indicator.png') left top no-repeat transparent;
+  }
+}
+.ets-puzzle-incorrect,
+.ets-incorrect {
+  .ets-indicator {
+    .inline-block();
+    background: url('../mock/image/incorrect_indicator.png') left top no-repeat transparent;
+  }
+}

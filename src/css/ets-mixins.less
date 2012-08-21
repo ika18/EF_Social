@@ -1,0 +1,135 @@
+// Clearfix
+// --------
+.clearfix() {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+// inline-block
+// ----------------
+.inline-block() {
+  display: inline-block;
+  *display: inline; /* IE7 inline-block hack */
+  *zoom: 1;
+}
+
+// Size
+// ----------------
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+// Disable user select text
+// ----------------
+.disable-user-select() {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+// Font
+// ----------------
+.bold() {
+  font-weight: 700;
+}
+
+.italic() {
+  font-style: italic;
+}
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+// Border Radius
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Transitions
+.transition(@transition) {
+  -webkit-transition: @transition;
+     -moz-transition: @transition;
+      -ms-transition: @transition;
+       -o-transition: @transition;
+          transition: @transition;
+}
+
+// Transformations
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+     -moz-transform: rotate(@degrees);
+      -ms-transform: rotate(@degrees);
+       -o-transform: rotate(@degrees);
+          transform: rotate(@degrees);
+}
+.scale(@ratio) {
+  -webkit-transform: scale(@ratio);
+     -moz-transform: scale(@ratio);
+      -ms-transform: scale(@ratio);
+       -o-transform: scale(@ratio);
+          transform: scale(@ratio);
+}
+.translate(@x, @y) {
+  -webkit-transform: translate(@x, @y);
+     -moz-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y);
+       -o-transform: translate(@x, @y);
+          transform: translate(@x, @y);
+}
+.skew(@x, @y) {
+  -webkit-transform: skew(@x, @y);
+     -moz-transform: skew(@x, @y);
+      -ms-transform: skew(@x, @y);
+       -o-transform: skew(@x, @y);
+          transform: skew(@x, @y);
+}
+.translate3d(@x, @y, @z) {
+  -webkit-transform: translate(@x, @y, @z);
+     -moz-transform: translate(@x, @y, @z);
+      -ms-transform: translate(@x, @y, @z);
+       -o-transform: translate(@x, @y, @z);
+          transform: translate(@x, @y, @z);
+}
+
+// Opacity
+.opacity(@opacity) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}
+
+// vertical gradient background color
+.vgradient-bg-color (@c1, @c2) {
+  background: @c1;
+  background: -moz-linear-gradient(top, @c1 0%, @c2 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,@c1), color-stop(100%,@c1)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, @c1 0%,@c2 100%); /* Chrome10+,Safari5.1+ */
+  background: linear-gradient(top, @c1 0%,@c2 100%); /* W3C */
+}
+
+// transparent background color
+.transparent-background(@r,@g,@b,@a) {
+    @hsl: rgb(@r,@g,@b);
+    @argb: `"#" + Math.floor(@{a} * 255).toString(16) + "@{hsl}".substring(1)`;
+    background-color: rgba(@r,@g,@b, @a);
+    *filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr=@argb, EndColorStr=@argb);
+}

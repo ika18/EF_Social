@@ -1,0 +1,122 @@
+///////////////////////////////////////////////////////////////////////////////////////
+//
+//  Hierarchy:     Englishtown > School > Component > Audio Player
+//  File:          ets-component-audio-player.less
+//
+//////////////////////////////////////////////////////////////////////////////////////*/
+
+// Variables: background image url
+@img-audio-player: "../../../school-ui-shared/src/img/ets-component-audio-player.png";
+
+
+.ets-ap.mejs-container {
+  width: 75px !important;
+  height: 75px !important;
+  overflow: visible;
+  background: none;
+  .inline-block;
+}
+.ets-ap.mejs-container .mejs-controls {
+  background: none!important;
+  height: 65px;
+}
+
+.ets-ap.mejs-audio .mejs-controls .mejs-mute, 
+.ets-ap.mejs-audio .mejs-controls .mejs-time,
+.ets-ap.mejs-audio .mejs-controls .mejs-horizontal-volume-slider {
+  display: none;
+}
+
+.ets-ap .mejs-button {
+  *left: 0; /* hack for ie7 - button position will be incorrect when playing*/
+}
+.ets-ap .mejs-button, 
+.ets-ap .mejs-time {
+  position: absolute;
+  background: transparent;
+}
+
+.ets-ap .mejs-controls .mejs-time-rail {
+  width: 181px !important;
+  height: 42px;
+  background: url("@{img-audio-player}") -200px 0 no-repeat;
+  position: relative;
+  padding: 10px 0 0 16px;
+  top: -50px;
+  left: -61px;
+  display: none;
+}
+
+.ets-ap.ets-ap-below .mejs-controls .mejs-time-rail {
+  width: 181px !important;
+  height: 34px;
+  background-position: -200px -100px;
+  top: 75px;
+  left: -61px;
+  padding: 18px 0 0 16px;
+}
+
+.ets-ap .mejs-control-playing .mejs-time-rail {
+  display: block;
+}
+
+.ets-ap.ets-ap-nobar .mejs-controls .mejs-time-rail {
+  display: none;
+}
+
+.ets-ap .mejs-controls .mejs-time-rail .mejs-time-total {
+  width: 153px !important;
+  height: 11px;
+  background: url("@{img-audio-player}") -200px -200px no-repeat;
+}
+
+.ets-ap .mejs-controls .mejs-time-rail .mejs-time-loaded {
+  background: none;
+}
+
+.ets-ap .mejs-controls .mejs-time-rail .mejs-time-current {
+  height: 11px;
+  background: url("@{img-audio-player}") -200px -225px no-repeat;
+}
+
+.ets-ap .mejs-controls .mejs-time-rail .mejs-time-handle {
+  display: block;
+  margin: 0;
+  width: 22px;
+  height: 22px;
+  top: -5px;
+  border: 0;
+  background: url("@{img-audio-player}") -200px -250px no-repeat;
+}
+
+.ets-ap .mejs-controls .mejs-playpause-button  button {
+  width: 75px;
+  height: 75px;
+  background: url("@{img-audio-player}") no-repeat 0 0;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0 none;
+}
+
+.ets-ap .mejs-controls .mejs-playpause-button  button:hover {
+  background-position: 0 -100px;
+}
+
+//Remove outline in moz
+.ets-ap .mejs-controls .mejs-playpause-button  button::-moz-focus-inner {
+  border: 0;
+}
+
+.ets-ap .mejs-controls .mejs-pause button {
+  background-position: 0 -200px;
+}
+
+.ets-ap .mejs-controls .mejs-pause button:hover {
+  background-position: 0 -200px;
+}
+
+.ets-ap.mejs-container .mejs-controls {
+  position: relative;
+}
+
