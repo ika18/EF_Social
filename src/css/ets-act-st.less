@@ -1,0 +1,171 @@
+@component-icon: "../img/ets-component-icon.png";
+
+.icon-people {
+    background: url("../img/4.png") 0 0 no-repeat transparent;
+    .size(20px, 15px);
+    .inline-block();
+    vertical-align: text-bottom;
+}
+.icon-arrow-up {
+    background: url("../img/6.png") 0 0 no-repeat transparent;
+    .size(15px, 17px);
+    .inline-block();
+    vertical-align: text-bottom;
+}
+.icon-close {
+    background: url("../img/7.png") 0 0 no-repeat transparent;
+    .size(15px, 15px);
+    .inline-block();
+    vertical-align: text-bottom;
+}
+
+.ets-act-st {
+    .white-shadow {
+        text-shadow: 0 1px 1px #FFF;
+    }
+
+    .box {
+        background-color: #DBDBDB;
+        .border-radius(8px);
+        box-shadow: inset 0 0 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(0,0,0,0.1), inset 0 -1px 0 white;
+    }
+
+    h4 {
+        color: #6f6f6f;
+        font-size: 15px;
+        .white-shadow();
+        background: url("../img/5.png") 0 2px no-repeat transparent;
+        line-height: 25px;
+        padding-left: 30px;
+        margin-bottom: 5px;
+    }
+
+    .ets-valid {
+        h4 {
+            background: url("@{component-icon}") -199px -98px no-repeat transparent;
+        }
+    }
+
+    .ets-describe-area {
+        float: left;
+        margin-left: 114px;
+        width: 320px;
+        text-align: left;
+
+        .ets-describe-text {
+            .box();
+            height: 243px;
+            padding: 6px;
+            textarea {
+                .size(292px, 209px);
+                resize: none;
+                border: 0;
+                margin: 0;
+                padding: 8px;
+                .border-radius(8px 8px 0 0);
+                float: left;
+                font-size: 18px;
+
+                &.ets-placeholder {
+                    color: #adadad;
+                }
+            }
+
+
+            .ets-helper {
+                background-color: #eaf7f7;
+                margin: 0;
+                padding: 0;
+                clear: both;
+                line-height: 18px;
+                .border-radius(0 0 8px 8px);
+                text-align: center;
+                color: #707a81;
+                .white-shadow();
+                strong {
+                    color: #09aedd;
+                }
+            }
+        }
+
+        .share-info {
+            padding: 0 6px;
+            margin-top: 18px;
+            line-height: 36px;
+            .box();
+            label {
+                display: block;
+                color: #757575;
+                font-size: 14px;
+                cursor: pointer;
+
+                .icon-people {
+                    margin: 0 5px 0 10px;
+                }
+            }
+        }
+    }
+
+    .ets-select-image-area {
+        float: right;
+        margin-right: 114px;
+        text-align: center;
+        width: 340px;
+        h4 {
+            text-align: left;
+        }
+
+        .ets-images-area {
+            .size(328px, 292px);
+            .box();
+            padding: 6px;
+            position: relative;
+            .ets-gallery {
+                position: relative;
+                overflow: auto;
+                .size(100%, 100%);
+                ul {
+                    width: 100%;
+                    li {
+                        display: inline-block;
+                        float: left;
+                        a {
+                            display: block;
+                            padding: 5px;
+
+                            &:hover {
+                                background-color: white;
+                                box-shadow: 0 0 4px #999;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+            .ets-progress-wrapper {
+                background: #b7b7b7;
+                .size(208px, 50px);
+                box-shadow: inset 0 0 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(0,0,0,0.1), inset 0 -1px 0 white;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin: -25px 0 0 -104px;
+            }
+
+            .ets-crop-area {
+                .size(100%, 100%);
+                position: relative;
+                overflow: hidden;      
+                img {
+                    cursor: move;
+                }
+            }
+        }
+        
+
+        .ets-btn {
+            margin-top: 10px;
+        }
+    }
+}

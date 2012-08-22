@@ -1,3 +1,6 @@
 [submodule "src/js/lib/troopjs-bundle"]
 	path = src/js/lib/troopjs-bundle
 	url = https://github.com/troopjs/troopjs-bundle.git
+[submodule "src/_shared"]
+	path = src/_shared
+	url = http://Ika.Wu@stash.englishtown.com/scm/MAIN/ui-shared-dist.git
