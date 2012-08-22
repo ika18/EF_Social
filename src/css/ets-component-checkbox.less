@@ -1,0 +1,28 @@
+.ets-checkbox {
+    background: url("../img/1.png") 0 0 no-repeat transparent;
+    .size(44px, 30px);
+    .inline-block();
+    vertical-align: middle;
+
+    &.ets-checkbox-hover {
+         background: url("../img/2.png") 0 0 no-repeat transparent;
+    }
+    &.ets-checkbox-checked {
+        background: url("../img/3.png") 0 0 no-repeat transparent;
+    }
+
+    input {
+        display: none;
+    }
+}
+
+.ets-nojs .ets-checkbox {
+    background: none;
+    .size(auto, auto);
+    &.ets-checkbox-checked {
+        background: none;
+    }
+    input {
+        display: block;
+    }
+}
