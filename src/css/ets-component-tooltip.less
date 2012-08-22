@@ -24,6 +24,9 @@
 		}
 	}
 }
+.ets-on .ets-tooltip {
+	display: block;
+}
 .ets-tooltip:after {
 	border: solid transparent;
 	content: " ";
@@ -76,5 +79,35 @@
 }
 .ets-tooltip.ets-upper-arrow:after {
 	display: none;
+}
+
+// left arrow tooltip
+.ets-tooltip.ets-left-arrow:after {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-right-color: rgba(18,28,35,0.75);
+	border-width: 10px;
+	top: 50%;
+	left: 0;
+	margin-left: -20px;
+}
+
+// right arrow tooltip
+.ets-tooltip.ets-right-arrow:after {
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-left-color: rgba(18,28,35,0.75);
+	border-width: 10px;
+	top: 50%;
+	left: 0;
+	margin-left: -20px;
 }
 /****************************** tooltips definition end *****************************/

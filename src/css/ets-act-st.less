@@ -168,4 +168,69 @@
             margin-top: 10px;
         }
     }
+
+    .ets-profile-wall {
+        .inline-block();
+        width: 868px;
+        li {
+            .inline-block();
+            float: left;
+            position: relative;
+            margin: 7px;
+            a {
+                display: block;
+                padding: 5px;
+                &:hover {
+                    background-color: #FFF;
+                    box-shadow: 0 0 4px #999;
+                }
+            }
+
+            .ets-tooltip {
+                left: 100%;
+                top: -50%;
+                .ets-tooltip-content {
+                    padding: 0;
+                }
+                p {
+                    text-align: left;  
+                    padding: 10px;
+                }
+                .ets-tooltip-btns {
+                    text-align: center;
+                }
+            }
+
+            .ets-preson-info {
+                position: relative;
+                text-align: left;
+                .size(100%, 48px);
+                background-color: rgba(0,0,0,0.3);
+
+                img {
+                    position: absolute;
+                    top: 4px;
+                    left: 10px;
+                }
+
+                .ets-info {
+                    margin-left: 65px;
+                    p {
+                        padding: 0;
+                        line-height: 24px;
+                    }
+
+                    .ets-name {
+                    }
+                    .ets-location {
+                        font-size: 10px;
+
+                    }
+                }
+            }
+        }
+        li.ets-on {
+            z-index: 1;
+        }
+    }
 }
