@@ -18,7 +18,6 @@
     .inline-block();
     vertical-align: text-bottom;
 }
-
 .ets-act-st {
     .white-shadow {
         text-shadow: 0 1px 1px #FFF;
@@ -34,15 +33,22 @@
         color: #6f6f6f;
         font-size: 15px;
         .white-shadow();
-        background: url("@{component-icon-img}") -304px -98px no-repeat transparent;
         line-height: 25px;
-        padding-left: 30px;
         margin-bottom: 5px;
+        .icon-tick {
+            background: url("@{component-icon-img}") -304px -100px no-repeat transparent;
+            .inline-block();
+            .size(21px, 20px);
+            margin-right: 5px;
+            vertical-align: text-bottom;
+        }
     }
 
     .ets-valid {
         h4 {
-            background: url("@{component-icon-img}") -199px -98px no-repeat transparent;
+            .icon-tick {
+                background: url("@{component-icon-img}") -199px -100px no-repeat transparent;    
+            }
         }
     }
 
