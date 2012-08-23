@@ -122,7 +122,7 @@ $(function () {
         image.src = imgUrl;
 
         $(image).load(function () {
-            $previewImage.attr("src", imgUrl);
+            $previewImage.attr("src", imgUrl).css("cursor", 'move');
 
             $galleryScreen.addClass('ets-none');
             $progressScreen.addClass('ets-none');
@@ -138,7 +138,6 @@ $(function () {
             var height = $previewImage.height() - 292;
 
             $previewImage.draggable({
-                cursor: 'move',
                 drag: function (e, ui) {
                     if (ui.position.left >= 0) {
                         ui.position.left = 0;
@@ -174,7 +173,13 @@ $(function () {
         $imageArea.removeClass('ets-valid');
         $imageArea.trigger('change:tick');
 
-        $previewImage.draggable('destroy');
+        $previewImage.draggable('destroy').css({
+            width: 'auto',
+            height: 'auto',
+            left: 0,
+            top: 0,
+            cursor: 'default'
+        });;
     });
 
     $nextBtn.click(function (e) {
