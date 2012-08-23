@@ -193,9 +193,9 @@
                 .size(100%, 100%);
                 position: relative;
                 overflow: hidden;      
-                img {
-                    cursor: move;
-                }
+                // img {
+                //     cursor: move;
+                // }
             }
         }
         
@@ -208,6 +208,10 @@
     .ets-profile-wall {
         .inline-block();
         width: 868px;
+
+        &.ets-none {
+            display: none;
+        }
         li {
             .inline-block();
             float: left;

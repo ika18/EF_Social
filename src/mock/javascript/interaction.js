@@ -3,16 +3,22 @@ $(function () {
     var $progressScreen = $('.ets-progress-wrapper')
     var $cropScreen = $('.ets-crop-area');
 
+    var $imageLib = $galleryScreen.find('li a');
+
     var $describeArea = $('.ets-describe-area');
     var $describe = $('#input-describe');
     var $counter = $describeArea.find('.ets-helper strong');
     var $imageArea = $('.ets-select-image-area');
+    var $previewImage = $cropScreen.find('img');
+    var $wall = $('.ets-profile-wall');
     var $progressBar = $('.ets-progress-track')
 
     var $uploadBtn = $('#upload-image');
     var $changeImageBtn = $('#change-image')
     var $nextBtn = $('#next-step');
     var $file = $('input:file');
+
+    var completeActivity = false;
 
 
     $describeArea.add($imageArea).bind('change:tick', function (e) {
@@ -21,6 +27,28 @@ $(function () {
         } else {
             $nextBtn.addClass('ets-disabled');
         }
+    });
+
+    $imageLib.click(function (e) {
+        e.preventDefault();
+
+
+        $galleryScreen.addClass('ets-none');
+        $progressScreen.addClass('ets-none');
+        $cropScreen.removeClass('ets-none');
+
+        $uploadBtn.addClass('ets-none');
+        $changeImageBtn.removeClass('ets-none');
+
+        $imageArea.addClass('ets-valid');
+        $imageArea.trigger('change:tick');
+
+        $previewImage.attr("src", $(this).find('img').attr('src'))
+        .css({
+            width: 328,
+            height: 292
+        });
+
     });
 
     // textarea stuff
@@ -60,7 +88,6 @@ $(function () {
     });
 
     $file.change(function (e) {
-        // console.log();
         var file = $file[0].files[0];
 
         if (file) {
@@ -90,13 +117,12 @@ $(function () {
 
     function loaded (e) {
         var imgUrl = e.target.result;
-        var $image = $cropScreen.find('img');
 
         var image = new Image();
         image.src = imgUrl;
 
         $(image).load(function () {
-            $image.attr("src", imgUrl);
+            $previewImage.attr("src", imgUrl);
 
             $galleryScreen.addClass('ets-none');
             $progressScreen.addClass('ets-none');
@@ -108,10 +134,11 @@ $(function () {
             $imageArea.addClass('ets-valid');
             $imageArea.trigger('change:tick');
 
-            var width = $image.width() - 328;
-            var height = $image.height() - 292;
+            var width = $previewImage.width() - 328;
+            var height = $previewImage.height() - 292;
 
-            $image.draggable({
+            $previewImage.draggable({
+                cursor: 'move',
                 drag: function (e, ui) {
                     if (ui.position.left >= 0) {
                         ui.position.left = 0;
@@ -146,17 +173,26 @@ $(function () {
 
         $imageArea.removeClass('ets-valid');
         $imageArea.trigger('change:tick');
+
+        $previewImage.draggable('destroy');
     });
 
     $nextBtn.click(function (e) {
         if ($(this).hasClass('ets-disabled')) {
             return;
         } else {
-            goToProfileWall();
+            if (completeActivity) {
+                alert('Activity completed!')
+            } else {
+                goToProfileWall();
+            }
+            
         }
     });
 
     function goToProfileWall () {
-        
+        $wall.removeClass('ets-none');
+        $imageArea.add($describeArea).addClass('ets-none');
+        completeActivity = true;
     }
 });
