@@ -103,6 +103,7 @@
                     }
                 },
                 updateCounter : function(e) {
+                    console.log(e);
                     // Save reference to $(this)
                     var $this = $(this);
                     // Is the goal amount passed? (most common when pasting)

@@ -7,12 +7,15 @@ $(function () {
     var $describe = $('#input-describe');
     var $counter = $describeArea.find('.ets-helper strong');
     var $imageArea = $('.ets-select-image-area');
+    var $wall = $('.ets-profile-wall');
     var $progressBar = $('.ets-progress-track')
 
     var $uploadBtn = $('#upload-image');
     var $changeImageBtn = $('#change-image')
     var $nextBtn = $('#next-step');
     var $file = $('input:file');
+
+    var completeActivity = false;
 
 
     $describeArea.add($imageArea).bind('change:tick', function (e) {
@@ -152,11 +155,18 @@ $(function () {
         if ($(this).hasClass('ets-disabled')) {
             return;
         } else {
-            goToProfileWall();
+            if (completeActivity) {
+                alert('Activity completed!')
+            } else {
+                goToProfileWall();
+            }
+            
         }
     });
 
     function goToProfileWall () {
-        
+        $wall.removeClass('ets-none');
+        $imageArea.add($describeArea).addClass('ets-none');
+        completeActivity = true;
     }
 });
