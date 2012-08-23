@@ -22,9 +22,8 @@
         }
         this.killAnimation = function()
         {
-            //$( $( this ).children(0).children(0) ).css("left", "20px");
             _status = "off";
-            $( $( this ).children(0).children(0) ).stop( true, false )
+            $( _this ).stop( true, false );
         }      
         this.initialize = function() 
         {
@@ -36,14 +35,13 @@
         
         var loop = function()
         {
-            $( _this ).children(0).children(0).css("left","0");
+            $(_this).css("background-position-x", "0");
             animateBar();
         }
         var animateBar = function()
         {
-            //alert( $( _this ).children(0).children(0).attr( 'class' ) );
-            $( _this ).children(0).children(0).animate(
-                { left: '-=9' },
+            $( _this ).animate(
+                {"background-position-x": '-=9'},
                 _speed,
                 "linear",
                 function(){ if ( _status == "on" ) { loop() }; } 

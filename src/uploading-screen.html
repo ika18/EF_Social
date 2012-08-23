@@ -19,6 +19,16 @@
     <script type="text/javascript" src="_shared/jquery/1.8/jquery.min.js"></script>
     <!-- Checkbox jQuery plugin -->
     <script type="text/javascript" src="js/ets-checkbox.js"></script>
+    <!-- Progress bar plugin -->
+    <script type="text/javascript" src="js/jquery.progressbar.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.ets-progress-track').pb({
+                speed: 300
+            }).loopAnimation();
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -43,7 +53,7 @@
                     
                     <div class="ets-act-st ets-cf">
                         <div class="ets-describe-area ets-valid">
-                            <h4>Describe yourself</h4>
+                            <h4><i class="icon-tick"></i>Describe yourself</h4>
 
                             <div class="ets-describe-text">
                                 <textarea name="" id="" cols="30" rows="10">Hello, world!</textarea>
@@ -62,11 +72,15 @@
                             </div>
                         </div>
                         <div class="ets-select-image-area">
-                            <h4>Attach image</h4>
+                            <h4><i class="icon-tick"></i>Attach image</h4>
 
                             <div class="ets-images-area">
                                 <div class="ets-progress-wrapper">
-                                    
+                                    <div class="ets-progress-bar">
+                                        <div class="ets-progress-track">
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 

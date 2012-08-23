@@ -1,24 +1,23 @@
-@component-icon: "../img/ets-component-icon.png";
+@component-icon-img: "../img/ets-component-icon.png";
 
 .icon-people {
-    background: url("../img/4.png") 0 0 no-repeat transparent;
+    background: url("@{component-icon-img}") -468px 0 no-repeat transparent;
     .size(20px, 15px);
     .inline-block();
     vertical-align: text-bottom;
 }
 .icon-arrow-up {
-    background: url("../img/6.png") 0 0 no-repeat transparent;
+    background: url("@{component-icon-img}") -540px 0 no-repeat transparent;
     .size(15px, 17px);
     .inline-block();
     vertical-align: text-bottom;
 }
 .icon-close {
-    background: url("../img/7.png") 0 0 no-repeat transparent;
+    background: url("@{component-icon-img}") -504px 0 no-repeat transparent;
     .size(15px, 15px);
     .inline-block();
     vertical-align: text-bottom;
 }
-
 .ets-act-st {
     .white-shadow {
         text-shadow: 0 1px 1px #FFF;
@@ -34,15 +33,22 @@
         color: #6f6f6f;
         font-size: 15px;
         .white-shadow();
-        background: url("../img/5.png") 0 2px no-repeat transparent;
         line-height: 25px;
-        padding-left: 30px;
         margin-bottom: 5px;
+        .icon-tick {
+            background: url("@{component-icon-img}") -304px -100px no-repeat transparent;
+            .inline-block();
+            .size(21px, 20px);
+            margin-right: 5px;
+            vertical-align: text-bottom;
+        }
     }
 
     .ets-valid {
         h4 {
-            background: url("@{component-icon}") -199px -98px no-repeat transparent;
+            .icon-tick {
+                background: url("@{component-icon-img}") -199px -100px no-repeat transparent;    
+            }
         }
     }
 
@@ -88,6 +94,20 @@
                     &.charas-num-overflow{
                         color:red;
                     }
+                }
+            }
+            #input-describe_counter {
+                background-color: #eaf7f7;
+                margin: 0;
+                padding: 0;
+                clear: both;
+                line-height: 18px;
+                .border-radius(0 0 8px 8px);
+                text-align: center;
+                color: #707a81;
+                .white-shadow();
+                #input-describe_count {
+                    color: #09aedd;
                 }
             }
         }
@@ -155,6 +175,18 @@
                 left: 50%;
                 top: 50%;
                 margin: -25px 0 0 -104px;
+
+                .ets-progress-bar {
+                    margin: 4px 3px;
+                    position: relative;
+                    overflow: hidden;
+                    .size(202px, 42px);
+                    .ets-progress-track {
+                        .size(100%, 100%);
+                        position: absolute;
+                        background: url("../img/progress-bar.png") left top no-repeat;
+                    }
+                }
             }
 
             .ets-crop-area {
