@@ -75,14 +75,12 @@ $(function () {
         myDescribe = val;
     }).focus(function (e) {
         var val = $.trim($describe.val());
-        if (val == $describe.attr('data-placeholder')) {
-            $describe.val('');
-            $describe.removeClass('ets-placeholder');
-        }
+        $('.ets-placeholder').hide();
+
     }).blur(function (e) {
         var val = $.trim($describe.val());
-        if (!val) {
-            $describe.addClass('ets-placeholder');
+        if (!val.length) {
+            $('.ets-placeholder').show();
         }
     });
 
