@@ -16,9 +16,13 @@ $(function () {
     var $uploadBtn = $('#upload-image');
     var $changeImageBtn = $('#change-image')
     var $nextBtn = $('#next-step');
+    var $editProfleBtn = $('#edit-profile');
     var $file = $('input:file');
 
     var completeActivity = false;
+
+    var selectImgUrl;
+    var myDescribe;
 
 
     $describeArea.add($imageArea).bind('change:tick', function (e) {
@@ -32,6 +36,7 @@ $(function () {
     $imageLib.click(function (e) {
         e.preventDefault();
 
+        selectImgUrl = $(this).find('img').attr('src');
 
         $galleryScreen.addClass('ets-none');
         $progressScreen.addClass('ets-none');
@@ -43,7 +48,7 @@ $(function () {
         $imageArea.addClass('ets-valid');
         $imageArea.trigger('change:tick');
 
-        $previewImage.attr("src", $(this).find('img').attr('src'))
+        $previewImage.attr("src", selectImgUrl)
         .css({
             width: 328,
             height: 292
@@ -62,6 +67,8 @@ $(function () {
             $describeArea.removeClass('ets-valid');
             $describeArea.trigger('change:tick')
         }
+
+        myDescribe = val;
     }).focus(function (e) {
         var val = $.trim($describe.val());
         if (val == $describe.attr('data-placeholder')) {
@@ -119,7 +126,7 @@ $(function () {
         var imgUrl = e.target.result;
 
         var image = new Image();
-        image.src = imgUrl;
+        selectImgUrl = image.src = imgUrl;
 
         $(image).load(function () {
             $previewImage.attr("src", imgUrl).css("cursor", 'move');
@@ -195,9 +202,23 @@ $(function () {
         }
     });
 
+    $editProfleBtn.click(function (e) {
+        goToImageArea();
+    });
+
     function goToProfileWall () {
         $wall.removeClass('ets-none');
         $imageArea.add($describeArea).addClass('ets-none');
         completeActivity = true;
+
+        console.log($('.ets-profile-me .ets-tooltip-content').children('p:eq(0)'))
+        $('.ets-profile-me').children('a').find('img').attr('src', selectImgUrl);
+        $('.ets-profile-me .ets-tooltip-content').children('p:eq(0)').text(myDescribe);
+    }
+
+    function goToImageArea() {
+        $wall.addClass('ets-none');
+        $imageArea.add($describeArea).removeClass('ets-none');
+        completeActivity = false;
     }
 });
