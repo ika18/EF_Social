@@ -11,7 +11,6 @@ $(function () {
     var $imageArea = $('.ets-select-image-area');
     var $previewImage = $cropScreen.find('img');
     var $wall = $('.ets-profile-wall');
-    var $progressBar = $('.ets-progress-track')
 
     var $uploadBtn = $('#upload-image');
     var $changeImageBtn = $('#change-image')
@@ -24,6 +23,8 @@ $(function () {
     var selectImgUrl;
     var myDescribe;
 
+    window.progressBar = new Image();
+    progressBar.src = "img/progress-bar.png";
 
     $describeArea.add($imageArea).bind('change:tick', function (e) {
         if ($describeArea.hasClass('ets-valid') && $imageArea.hasClass('ets-valid')) {
@@ -115,11 +116,7 @@ $(function () {
     function updateProgress(e) {
         $uploadBtn.addClass('ets-disabled');
         $galleryScreen.addClass('ets-none');
-        $progressScreen.removeClass('ets-none');
-
-        $progressBar.pb({
-            speed: 300
-        }).loopAnimation();   
+        $progressScreen.removeClass('ets-none'); 
     }
 
     function loaded (e) {
