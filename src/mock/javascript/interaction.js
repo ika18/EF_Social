@@ -146,12 +146,12 @@ $(function () {
             var imgHeight = $previewImage.height();
 
             if (imgWidth <= imgHeight) {
-                $previewImage.attr({
+                $previewImage.css({
                     width: previewWidth,
                     height: previewWidth * imgHeight / imgWidth
                 });
             } else {
-                $previewImage.attr({
+                $previewImage.css({
                     width: previewHeight * imgWidth / imgHeight,
                     height: previewHeight
                 });
@@ -176,6 +176,8 @@ $(function () {
                     }
                 }
             });
+
+            delete image;
         });
 
        
