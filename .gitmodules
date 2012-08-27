@@ -3,4 +3,4 @@
 	url = https://github.com/troopjs/troopjs-bundle.git
 [submodule "src/_shared"]
 	path = src/_shared
-	url = http://Ika.Wu@stash.englishtown.com/scm/MAIN/ui-shared-dist.git
+	url = http://stash.englishtown.com/scm/MAIN/ui-shared-dist.git

@@ -62,6 +62,7 @@
             .box();
             height: 243px;
             padding: 6px;
+            position: relative;
             textarea {
                 .size(292px, 209px);
                 resize: none;
@@ -71,10 +72,14 @@
                 .border-radius(8px 8px 0 0);
                 float: left;
                 font-size: 18px;
+            }
 
-                &.ets-placeholder {
-                    color: #adadad;
-                }
+            .ets-placeholder {
+                position: absolute;
+                font-size: 18px;
+                color: gray;
+                top: 14px;
+                left: 12px;
             }
 
 
@@ -97,6 +102,7 @@
                 }
             }
             #input-describe_counter {
+                font-size: 12px;
                 background-color: #eaf7f7;
                 margin: 0;
                 padding: 0;
@@ -182,17 +188,22 @@
                     overflow: hidden;
                     .size(202px, 42px);
                     .ets-progress-track {
-                        .size(100%, 100%);
+                        .size(110%, 100%);
                         position: absolute;
                         background: url("../img/progress-bar.png") left top no-repeat;
                     }
+                }
+
+                p {
+                    margin-top: 8px;
+                    .white-shadow();
                 }
             }
 
             .ets-crop-area {
                 .size(100%, 100%);
                 position: relative;
-                overflow: hidden;      
+                overflow: hidden;
                 .resize{
                     width: 100%;
                     height: 100%;
@@ -221,10 +232,17 @@
             float: left;
             position: relative;
             margin: 7px;
+
             a {
                 display: block;
                 padding: 5px;
                 &:hover {
+                    background-color: #FFF;
+                    box-shadow: 0 0 4px #999;
+                }
+            }
+            &.ets-on {
+                a {
                     background-color: #FFF;
                     box-shadow: 0 0 4px #999;
                 }

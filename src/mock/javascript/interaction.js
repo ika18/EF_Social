@@ -11,7 +11,6 @@ $(function () {
     var $imageArea = $('.ets-select-image-area');
     var $previewImage = $cropScreen.find('img');
     var $wall = $('.ets-profile-wall');
-    var $progressBar = $('.ets-progress-track')
 
     var $uploadBtn = $('#upload-image');
     var $changeImageBtn = $('#change-image')
@@ -24,6 +23,11 @@ $(function () {
     var selectImgUrl;
     var myDescribe;
 
+    var previewWidth = 328;
+    var previewHeight = 292;
+
+    window.progressBar = new Image();
+    progressBar.src = "img/progress-bar.png";
 
     $describeArea.add($imageArea).bind('change:tick', function (e) {
         if ($describeArea.hasClass('ets-valid') && $imageArea.hasClass('ets-valid')) {
@@ -50,8 +54,8 @@ $(function () {
 
         $previewImage.attr("src", selectImgUrl)
         .css({
-            width: 328,
-            height: 292
+            width: previewWidth,
+            height: previewHeight
         });
 
     });
@@ -71,14 +75,12 @@ $(function () {
         myDescribe = val;
     }).focus(function (e) {
         var val = $.trim($describe.val());
-        if (val == $describe.attr('data-placeholder')) {
-            $describe.val('');
-            $describe.removeClass('ets-placeholder');
-        }
+        $('.ets-placeholder').hide();
+
     }).blur(function (e) {
         var val = $.trim($describe.val());
-        if (!val) {
-            $describe.addClass('ets-placeholder');
+        if (!val.length) {
+            $('.ets-placeholder').show();
         }
     });
 
@@ -115,11 +117,7 @@ $(function () {
     function updateProgress(e) {
         $uploadBtn.addClass('ets-disabled');
         $galleryScreen.addClass('ets-none');
-        $progressScreen.removeClass('ets-none');
-
-        $progressBar.pb({
-            speed: 300
-        }).loopAnimation();   
+        $progressScreen.removeClass('ets-none'); 
     }
 
     function loaded (e) {
@@ -141,8 +139,24 @@ $(function () {
             $imageArea.addClass('ets-valid');
             $imageArea.trigger('change:tick');
 
-            var width = $previewImage.width() - 328;
-            var height = $previewImage.height() - 292;
+
+            var imgWidth = $previewImage.width();
+            var imgHeight = $previewImage.height();
+
+            if (imgWidth <= imgHeight) {
+                $previewImage.css({
+                    width: previewWidth,
+                    height: previewWidth * imgHeight / imgWidth
+                });
+            } else {
+                $previewImage.css({
+                    width: previewHeight * imgWidth / imgHeight,
+                    height: previewHeight
+                });
+            }
+
+            var width = $previewImage.width() - previewWidth;
+            var height = $previewImage.height() - previewHeight;
 
             $previewImage.draggable({
                 drag: function (e, ui) {
@@ -160,6 +174,8 @@ $(function () {
                     }
                 }
             });
+
+            delete image;
         });
 
        
@@ -207,13 +223,16 @@ $(function () {
     });
 
     function goToProfileWall () {
-        $wall.removeClass('ets-none');
-        $imageArea.add($describeArea).addClass('ets-none');
-        completeActivity = true;
+        $.Deferred(function (dfd) {
+            $('.ets-profile-me').children('a').find('img').attr('src', selectImgUrl);
+            $('.ets-profile-me .ets-tooltip-content').children('p:eq(0)').text(myDescribe);
 
-        console.log($('.ets-profile-me .ets-tooltip-content').children('p:eq(0)'))
-        $('.ets-profile-me').children('a').find('img').attr('src', selectImgUrl);
-        $('.ets-profile-me .ets-tooltip-content').children('p:eq(0)').text(myDescribe);
+            dfd.resolve();
+        }).done(function () {
+            $wall.removeClass('ets-none');
+            $imageArea.add($describeArea).addClass('ets-none');
+            completeActivity = true;
+        });
     }
 
     function goToImageArea() {
