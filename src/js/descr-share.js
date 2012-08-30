@@ -1,19 +1,12 @@
-/*
-ok	1:check focus
-ok	2:check input
-3:choose default img
-4:update image
-5:clip image
-6:next step
-*/
-
 $(function(){
 
 	var defaultDescr = 'Example';
 	var msg = 'characters left';
-	var $descrText = $('.ets-describe-text textarea');
+	var $descrText = $('textarea#input-describe');
 	var $descrArea = $('.ets-describe-area');
 	var $nextButton = $('#next-step');
+	var $DescrTextplaceholder = $('.ets-placeholder');
+	var profileImgUrl,profileDescr;
 
 	var validDescr = function(){
 		var result;
@@ -25,6 +18,7 @@ $(function(){
 			result = false;
 		}
 		validNextStep();
+		profileDescr = $descrText.val();
 		return result;
 	}
 
@@ -50,15 +44,10 @@ $(function(){
 		'goal' : 150,
 		'msg' : msg
 	}).focusin(function(event) {
-		var me = $(this);
-		if(me.hasClass('ets-placeholder')){
-			me.val('');
-			me.removeClass('ets-placeholder');
-		}
+		$DescrTextplaceholder.addClass('ets-none');
 	}).focusout(function(event) {
 		if(!validDescr()){
-			$descrText.val(defaultDescr);
-			$descrText.addClass('ets-placeholder');
+			$DescrTextplaceholder.removeClass('ets-none');
 		}
 
 	}).keyup(function(event) {
@@ -87,6 +76,7 @@ $(function(){
 	var cropAreaFun = function(imageUrl){		
 		$etsGallery.addClass('ets-none');
 
+		profileImgUrl = imageUrl;
 		var cropImg = $cropArea.find('img').attr('src',imageUrl);
 		$cropArea.removeClass('ets-none');
 
@@ -115,7 +105,6 @@ $(function(){
 	});
 
 	$file.change(function(event) {
-		console.log('me');
 		var file = $file[0].files[0];
         if (file) {
             getImageUrl(file);   
@@ -166,22 +155,56 @@ $(function(){
 
 	var $profileWall = $('ul.ets-profile-wall');
 
-	$nextButton.click(function(){
-		var me = $(this);
-		if(!me.hasClass('ets-disabled')){
+	var gotoProfileWall = function(){
+		$nextButton.unbind();
+		$nextButton.click(function(){
+			var me = $(this);
+			if(!me.hasClass('ets-disabled')){
+				showProfileWall();
+				initMyProfile();
+			}
+		})		
+	}
+
+	var finishActivity = function(){
+		$nextButton.unbind();
+		$nextButton.click(function(){
+			alert('finish activity');
+		});
+	}
+
+	var showProfileWall = function(){
 			$descrArea.addClass('ets-none');
 			$selectImgArea.addClass('ets-none');
-			$profileWall.removeClass('ets-none')
+			$profileWall.removeClass('ets-none');
+
+			finishActivity();
 		}
-	})
+	var showEditProfile = function(){
+			$descrArea.removeClass('ets-none');
+			$selectImgArea.removeClass('ets-none');
+			$profileWall.addClass('ets-none');
+
+			gotoProfileWall();
+		}
+
+	var initMyProfile = function(){
+		var myprofile = $('.ets-profile-me');
+		myprofile.find('.ets-tooltip-content p:first').text(profileDescr);
+		myprofile.find('#edit-profile').click(function(){
+			showEditProfile();
+		});
+	}
+
+	gotoProfileWall();
 
 	var $profileList = $profileWall.find('li');
 	var addFriendsMessage = 'message be sent';
-	var addFriend = function(me){		
-			console.log(1);
-			$(me).find('span').text(addFriendsMessage);
 
+	var addFriend = function(me){		
+		$(me).find('span').text(addFriendsMessage);
 	}
+
 	$profileList.click(function(){
 		
 		var me = $(this);
@@ -192,7 +215,7 @@ $(function(){
 			$profileList.find('.ets-tooltip:visible').hide();	
 			$etsTooltip.css({'z-index':'2'}).show();
 
-			$etsTooltip.find('.ets-btn-small').bind('click',function(){
+			$etsTooltip.find('.ets-btn-small[id!="edit-profile"]').bind('click',function(){
 				addFriend(this);
 				$etsTooltip.find('.ets-btn-small').unbind();
 			});
