@@ -23,6 +23,14 @@
         text-shadow: 0 1px 1px #FFF;
     }
 
+    &.ets-btn-white , .ets-btn-white{
+         color: #6F6F6F;
+    }
+
+    &.ets-btn-white.ets-disabled , .ets-btn-white.ets-disabled{
+        color: #C1C3C7;
+    }
+
     .box {
         background-color: #DBDBDB;
         .border-radius(8px);
@@ -114,14 +122,18 @@
                 .white-shadow();
                 #input-describe_count {
                     color: #09aedd;
+
+                    &.warmColor{
+                        color: red;
+                    }
                 }
             }
         }
 
         .share-info {
-            padding: 0 6px;
+            padding: 4px;
             margin-top: 18px;
-            line-height: 36px;
+            line-height: 28px;
             .box();
             label {
                 display: block;
@@ -132,6 +144,9 @@
                 .icon-people {
                     margin: 0 5px 0 10px;
                 }
+            }
+            &.share-info-hover{
+                background-color : #EAEAEA;
             }
         }
     }
@@ -146,10 +161,11 @@
         }
 
         .ets-images-area {
-            .size(328px, 292px);
+            .size(330px, 310px);
             .box();
-            padding: 6px;
+            padding: 0;            
             position: relative;
+
             .ets-gallery {
                 position: relative;
                 overflow: auto;
@@ -159,13 +175,17 @@
                     li {
                         display: inline-block;
                         float: left;
+                        .size(104px , 104px);
                         a {
                             display: block;
-                            padding: 5px;
-
+                            border: 6px solid transparent;
+                             .size(92px , 92px);
                             &:hover {
-                                background-color: white;
-                                box-shadow: 0 0 4px #999;
+                                border-color: white;
+                                // box-shadow: 0 0 4px #999;
+                            }
+                            img{
+                                .size(92px , 92px);
                             }
                         }
                     }
@@ -181,6 +201,7 @@
                 left: 50%;
                 top: 50%;
                 margin: -25px 0 0 -104px;
+                display: none;
 
                 .ets-progress-bar {
                     margin: 4px 3px;
@@ -204,13 +225,11 @@
                 .size(100%, 100%);
                 position: relative;
                 overflow: hidden;
+                display: none;
                 .resize{
                     width: 100%;
                     height: 100%;
                 }
-                // img {
-                //     cursor: move;
-                // }
             }
         }
         
@@ -218,6 +237,33 @@
         .ets-btn {
             margin-top: 10px;
         }
+
+        #change-image{
+            display: none;
+        }
+
+        &.ets-selected-image{
+            .ets-images-area{                
+                .size(300px,300px);
+                padding: 6px;
+            }
+            .ets-gallery{
+                display: none;
+            }
+
+            .ets-crop-area{
+                display: block;                
+            }
+
+            #upload-image{
+                display: none;
+            }
+
+            #change-image{
+                display: inline-block;                
+            }
+        }
+
     }
 
     .ets-profile-wall {
@@ -259,7 +305,14 @@
                     padding: 10px;
                 }
                 .ets-tooltip-btns {
-                    text-align: center;
+                    text-align: center;                    
+                    em{
+                        font-size: 20px;                        
+                        font-weight: bolder;
+                        vertical-align: top;
+                        margin-top: 1px;
+                        display: inline-block;
+                    }
                 }
             }
 
