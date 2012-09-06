@@ -76,8 +76,8 @@ $(function() {
 
 
     //Image Area
-    var previewWidth = 329;
-    var previewHeight = 329;
+    var previewWidth = 298;
+    var previewHeight = 298;
     var $cropScreen = $('.ets-crop-area');
     var $previewImage = $cropScreen.find('img');
     var prepareCropImg = function(imgurl) {
@@ -107,16 +107,20 @@ $(function() {
             prepareCropImg(selectedImgUrl);     
             guideToCropImgArea();
 
-            //fix current mock image to somall bug
-            $previewImage.css({
-                width: 298,
-                height: 298
-            });
-
             //block bubble and default handler
             return false;
         });
     }
+
+    //center the imagal for horizontal and vertical
+    var centerTheCropImage = function(){
+        var preLeft = -($previewImage.width() - previewWidth)/2
+        var preTop = -($previewImage.height() - previewHeight)/2
+        $previewImage.css({
+            left:preLeft,
+            top:preTop
+        });
+    };
     
     var makeCropImgDragable = function() {
     	//use dom can get real width and height ,jQuery can't
@@ -131,7 +135,8 @@ $(function() {
         } else {
             $previewImage.css({
                 width: previewHeight * imgWidth / imgHeight,
-                height: previewHeight
+                height: previewHeight,
+                cursor: 'move'
             });
         }
         
@@ -152,10 +157,12 @@ $(function() {
                 if (ui.position.top <= -height) {
                     ui.position.top = -height;
                 }
-            },
-            cursor: "move"
+            }            
         });
-    }
+
+        //center the imagal for horizontal and vertical        
+        centerTheCropImage()
+    };
     
     var getImageUrlByFile = function(dfd, file) {
 
@@ -170,8 +177,8 @@ $(function() {
         };
         fileReader.readAsDataURL(file);
 
-    //rtm : use upload server
-    //...
+        //rtm : use upload server
+        //...
     };
     
     var $file = $('input:file');
@@ -190,12 +197,16 @@ $(function() {
                 $.Deferred(function(d) {
                     getImageUrlByFile(d, file);
                 }).done(function() {
-                    prepareCropImg(selectedImgUrl);
-                    makeCropImgDragable();
+                    prepareCropImg(selectedImgUrl);                    
                     guideToCropImgArea();
                 });            
             }
         });
+
+        //change the image size and dragable
+        $previewImage[0].onload = function(){
+            makeCropImgDragable();
+        }
     }
     
     var guideToSelectImgArea = function() {
@@ -209,6 +220,9 @@ $(function() {
 
             //guide to select & upload image
             guideToSelectImgArea();
+
+            //clean the file value
+            $file.val('');
 
             //trigger change:tick
             $imageArea.trigger('change:tick');
@@ -224,11 +238,11 @@ $(function() {
         });
     }
 
-    // function cropImageSetting(){    	
-    //     $previewImage[0].onload = function(e,dfd) {
-    //         makeCropImgDragable();          
-    //     };
-    // }
+    function initImageArea(){
+        initSelectImage();
+        initUploadBtn();
+        initChangeBtn();
+    }
 
     //image wall control logic
     var $editProfleBtn = $('#edit-profile');
@@ -254,7 +268,7 @@ $(function() {
         });
 
         //bind next button logic
-        $nextBtn.click(function(e) {
+        $nextBtn.click(function (e) {
             if ($(this).hasClass('ets-disabled')) {
                 return;
             } else {
@@ -266,7 +280,7 @@ $(function() {
             
             }
         })
-        .bind('change:edit', function(e) {
+        .bind('change:edit', function (e) {
             $wall.addClass('ets-none');
             $imageArea.add($describeArea).removeClass('ets-none');
         });
@@ -282,6 +296,12 @@ $(function() {
             }).done(function() {
                 $wall.removeClass('ets-none');
                 $imageArea.add($describeArea).addClass('ets-none');
+
+                //make the tooltip vertical align middle
+                var $selfProfile = $wall.find('.ets-profile-me').find('.ets-tooltip');
+                $selfProfile.css('margin-top',function(){
+                        return -10-($(this).height()/2);
+                });
             });
         }
     }
@@ -289,9 +309,7 @@ $(function() {
     //init 
     !function() {
         initDescrArea();        
-        initSelectImage();
-        initUploadBtn();
-        initChangeBtn();
+        initImageArea();
         initNextBtn();
         initImageEditBtn();
     }();
