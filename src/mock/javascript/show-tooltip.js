@@ -12,8 +12,7 @@ $(function () {
         } else {
             $li.removeClass('ets-on');
             $parent.toggleClass('ets-on');
-
-            // var offsetHeight = -($parent.height()/2);
+            
             //fix the location of the tooltip
             $parent.find('.ets-tooltip').css('margin-top',function (index, value){
                 return -10-($(this).height()/2);
@@ -41,7 +40,6 @@ $(function () {
 
     //mock the Default Image
     $link.find('img').each(function(index){
-
         var random = Math.random();  
         var i = index > 20 ? index - 20 : index > 10 ? index - 10 : index; //get the random image
         $(this).attr('src','mock/image/defaultOptions/'+ i +'.png');

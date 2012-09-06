@@ -44,7 +44,6 @@ $(function() {
 
     //Shared CheckBox Area
     function sharedWithOthers()  {
-
         var $sharedCheckBoxArea = $describeArea.find('.share-info');        
         $sharedCheckBoxArea.bind('hover', function (e) {
             if (e.type === "mouseenter") {
@@ -203,7 +202,7 @@ $(function() {
             }
         });
 
-        //change the image size and dragable
+        //fix height & widht is 0 bug(change the image size and dragable)
         $previewImage[0].onload = function(){
             makeCropImgDragable();
         }
@@ -252,7 +251,6 @@ $(function() {
             $('#next-step').trigger('change:edit');
         });
     }
-
 
     //next button valid logic
     var $nextBtn = $('#next-step')
@@ -306,7 +304,7 @@ $(function() {
         }
     }
 
-    //init 
+    //init the dafault logic
     !function() {
         initDescrArea();        
         initImageArea();
