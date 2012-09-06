@@ -12,18 +12,39 @@ $(function () {
         } else {
             $li.removeClass('ets-on');
             $parent.toggleClass('ets-on');
+
+            $('body').bind('click',hideTooltip);
             
             //fix the location of the tooltip
-            $parent.find('.ets-tooltip').css('margin-top',function (index, value){
+            $tooltip = $parent.find('.ets-tooltip');
+            $tooltip.css('margin-top',function (index, value){
                 return -10-($(this).height()/2);
             });
+
+            //todo:this need move outside as performance
+            //fix the tooltip overflow-x
+            var $container = $('#template-wrapper');
+            var containerLeftBorder = $container.width() + $container.offset().left;
+            var tooltipLeftBorder = $tooltip.offset().left + $tooltip.width()
+            if( tooltipLeftBorder >= containerLeftBorder ){
+                $tooltip.removeClass('ets-left-arrow');
+                $tooltip.addClass('ets-right-arrow');
+                $tooltip.css('left',function(){return -$tooltip.width();});
+            }
         }
     });
 
+    function hideTooltip(event){
+        if(!$(event.target).closest('.ets-profile-wall .ets-on a').length){
+            $li.removeClass('ets-on');
+            $('body').unbind('click',hideTooltip);
+        }
+    }
+
     //control the add friend action 
     function addFriendTrigger(me , text ){
-        $(me).addClass('ets-disabled');
-        $(me).find('span').text(text);
+        me.addClass('ets-disabled');
+        me.find('span').text(text);
         //soem ajax request add friend
     }
 
@@ -39,27 +60,41 @@ $(function () {
     }
 
     //mock the Default Image
-    $link.find('img').each(function(index){
-        var random = Math.random();  
-        var i = index > 20 ? index - 20 : index > 10 ? index - 10 : index; //get the random image
-        $(this).attr('src','mock/image/defaultOptions/'+ i +'.png');
-    });
+    var defaultFoods = [
+        {'imageUrl':'chinese_s','DescrText':'I am from Germany and I just love Chineese food!'},
+        {'imageUrl':'hamburger_s','DescrText':'My favourite food is hamburgers. I love american food!'},
+        {'imageUrl':'frenchfries_s','DescrText':'I think french fries tastes really good with ketchup. I would love to go to France some day!'},
+        {'imageUrl':'pasta_s','DescrText':'Italian food is the best! Spagethi bolognese is my favourite dish'},
+        {'imageUrl':'pizza_s','DescrText':'I like cheese and bread, so Pizza is the perfect dish for me! Yum!'},
+        {'imageUrl':'sallad_s','DescrText':"I always try to eat healthy food, so for me a sallad is the perfect choise! It's green and fresh."},
+        {'imageUrl':'salmon_s','DescrText':'For me fish is the best dish. I eat any fish, but I think Salmon is the best.'},
+        {'imageUrl':'seafood_s','DescrText':'I live near the coast, and we always have fresh seafood. Grilled prawns is my absolute favourite'},
+        {'imageUrl':'sushi_s','DescrText':'Sushi is so fresh and the perfect food in the summer. That is my favourite!'},
+        {'imageUrl':'toast_s','DescrText':'Every morning I start with a toast. I like it very much because I can put whatever I want in it!'}        
+    ];
+
 
     var alreadyFriend = 'Your are friends';
     var messageSent = 'Friend request sent';
-    //bind Add friend event
-    $li.not('.ets-profile-me').find('.ets-tooltip .ets-tooltip-btns span.ets-btn-small').each(function(event) {
+    $li.not('.ets-profile-me').each(function(index){
+        var random = Math.random();  
+        var i = index >= 20 ? index - 20 : index >= 10 ? index - 10 : index; //get the random image
 
-        mockRelationShip(this);
+        var $img = $(this).find('img');
+        $img.attr('src','mock/image/defaultOptions/'+ defaultFoods[i].imageUrl +'.jpg');
 
-        var me = $(this);
-        if(!me.hasClass('ets-disabled')){
-           me.click(function(){   
-                addFriendTrigger(me , messageSent);
+        var $DescrText = $(this).find('.ets-tooltip .ets-tooltip-content p').eq(0);
+        $DescrText.text(defaultFoods[i].DescrText);
+
+        var $friendBtn = $(this).find('.ets-tooltip .ets-tooltip-btns span.ets-btn-small').eq(0);
+        mockRelationShip($friendBtn);
+        
+         //bind Add friend event
+        if(!$friendBtn.hasClass('ets-disabled')){
+           $friendBtn.click(function(){   
+                addFriendTrigger($friendBtn , messageSent);
                 return false;
             });
         }
     });
-
-    
 });

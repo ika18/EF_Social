@@ -32,13 +32,14 @@ $(function() {
 
     var warmTextLength = 240;    
     var warmingLackCharsLeft = function(){        
-        var $LeftCharNumSpan = $('#input-describe_count');    
+        var $describeCounter = $('#input-describe_counter');
+        var $LeftCharNum = $describeCounter.find('#input-describe_count');    
         var val = $.trim($describe.val());        
         if(val.length >= warmTextLength){
-            console.log($LeftCharNumSpan);
-            $LeftCharNumSpan.addClass('warmColor');
+            console.log($LeftCharNum);
+            $describeCounter.addClass('warmColor');
         }else{
-            $LeftCharNumSpan.removeClass('warmColor');
+            $describeCounter.removeClass('warmColor');
         }
     }
 
@@ -102,7 +103,7 @@ $(function() {
     var $changeImageBtn = $('#change-image');
     function initSelectImage() { 
         $imgLib.click(function(event) {            
-            selectedImgUrl = $(this).find('img').attr('src');
+            selectedImgUrl = $(this).find('img').attr('src').replace('_s','');
             prepareCropImg(selectedImgUrl);     
             guideToCropImgArea();
 
