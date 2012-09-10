@@ -27,7 +27,7 @@
                 <ul class="ets-cf">
                     <% for (var i = 0, len = imageLib.length; i < len; i++) { %>
                     <li>
-                        <a href=""><img src="<%=imageLib[i].url%>" ></a>
+                        <a href="#" data-action="library"><img src="<%=imageLib[i].url%>" ></a>
                     </li>
                     <% } %>
                 </ul>
@@ -46,11 +46,11 @@
         </div>
 
     <div>
-        <div class="ets-btn ets-btn-white" id="upload-image">
+        <div class="ets-btn ets-btn-white" id="upload-image" data-action="image/upload">
             <div><i class="icon-arrow-up"></i> Upload an image</div>
         </div>
 
-        <div class="ets-btn ets-btn-white" id="change-image">
+        <div class="ets-btn ets-btn-white" id="change-image" data-action="image/change">
             <div><i class="icon-close"></i> Change picture</div>
         </div>
     </div>

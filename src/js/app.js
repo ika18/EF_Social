@@ -6,11 +6,13 @@ require.config({
         'widget': 'widget',
 
         // jquery plugin
-        'jquery.etsCheckbox': 'ets-checkbox'
+        'jquery.etsCheckbox': 'ets-checkbox',
+        'jquery.counter': 'lib/jquery-counter/2.2/jquery.counter'
     },
     shim: {
         'jquery.ui': ['jquery'],
-        'jquery.etsCheckbox': ['jquery']
+        'jquery.etsCheckbox': ['jquery'],
+        'jquery.counter': ['jquery']
     },
     "map" : {
         "*" : {
