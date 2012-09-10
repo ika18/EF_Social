@@ -2,7 +2,8 @@ define(['compose',
     'jquery',
     'troopjs-core/component/widget',
     'troopjs-utils/deferred',
-    'template!./main.html'], function shareAndDescribe(Compose, $, Widget, Deferred, template) {
+    'template!./main.html',
+    'jquery.etsCheckbox'], function shareAndDescribe(Compose, $, Widget, Deferred, template) {
     "use strict";
 
     var mockData = {
@@ -37,9 +38,20 @@ define(['compose',
         Deferred(function (renderDfd) {
             me.html(template, me._json, renderDfd);
         }).done(function () {
+            onRendered.call(me);
+        }).done(function () {
             me.$placehodler = $root.find('.ets-placeholder');
             deferred.resolve();
         });
+    }
+
+    // on template rendered
+    // initialize some stuffs
+    function onRendered() {
+        var me = this;
+        var $root = this.$element;
+
+        $root.find('[data-toggle="ets-checkbox"]').etsCheckbox();
     }
 
     return Widget.extend(function () {

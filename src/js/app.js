@@ -3,10 +3,14 @@ require.config({
         "troopjs-bundle": "lib/troopjs-bundle/dist/troopjs-bundle",
         "jquery" : "../_shared/jquery/1.7.2/jquery.min",
         "jquery.ui": "../_shared/jquery-ui/1.8.22/jquery-ui.min",
-        'widget': 'widget'
+        'widget': 'widget',
+
+        // jquery plugin
+        'jquery.etsCheckbox': 'ets-checkbox'
     },
     shim: {
-        'jquery.ui': ['jquery']
+        'jquery.ui': ['jquery'],
+        'jquery.etsCheckbox': ['jquery']
     },
     "map" : {
         "*" : {

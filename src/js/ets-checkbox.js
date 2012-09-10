@@ -29,9 +29,16 @@
         $element.trigger('checker:set');
     };
 
+    $.fn.etsCheckbox = function () {
+        return this.each(function () {
+            new Checker(this);
+        });
+    };
+
     $(function () {
         $('[data-toggle="ets-checkbox"]').each(function () {
-            new Checker(this);
+            // new Checker(this);
+            $(this).etsCheckbox();
         });
     });
 })(window.jQuery);
