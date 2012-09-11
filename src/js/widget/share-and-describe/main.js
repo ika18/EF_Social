@@ -4,7 +4,8 @@ define(['compose',
     'troopjs-utils/deferred',
     'template!./main.html',
     'jquery.etsCheckbox',
-    'jquery.counter'], function shareAndDescribe(Compose, $, Widget, Deferred, template) {
+    'jquery.counter',
+    'jquery.ui'], function shareAndDescribe(Compose, $, Widget, Deferred, template) {
     "use strict";
 
     var mockData = {
@@ -24,6 +25,94 @@ define(['compose',
         }
         
     };
+
+    var previewWidth = 298;
+    var previewHeight = 298;
+
+    function uploadFile () {
+        var me = this;
+        $('.fileupload').on('change', me.$element, function (e) {
+            var file = $(this)[0].files[0];
+            if (file) {
+                getAsImage.call(me, file);
+            }
+        });
+    }
+
+    function getAsImage(file) {
+        var me = this;
+        var reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onprogress = $.proxy(progressHandler, me);
+        reader.onload =  $.proxy(loadHandler, me);
+        reader.onerror =  $.proxy(errorHandler, me);
+    }
+
+    function progressHandler(e) {
+        var me = this;
+    }
+
+    function loadHandler (e) {
+        var me = this;
+        var $root = me.$element;
+        var imgUrl = e.target.result;
+        var image = new Image();
+        var selectImgUrl = image.src = imgUrl;
+
+        var $previewImage = $root.find('.ets-crop-area img');
+        var $progressScreen = $root.find('.ets-gallery');
+        var $galleryScreen = $root.find('.ets-progress-wrapper');
+        var $cropScreen = $root.find('.ets-crop-area');
+
+        $(image).load(function () {
+            $previewImage.attr("src", imgUrl).css("cursor", 'move');
+
+            me.publish('st/image/preview');
+
+            var imgWidth = $previewImage.width();
+            var imgHeight = $previewImage.height();
+
+            if (imgWidth <= imgHeight) {
+                $previewImage.css({
+                    width: previewWidth,
+                    height: previewWidth * imgHeight / imgWidth
+                });
+            } else {
+                $previewImage.css({
+                    width: previewHeight * imgWidth / imgHeight,
+                    height: previewHeight
+                });
+            }
+
+            var width = $previewImage.width() - previewWidth;
+            var height = $previewImage.height() - previewHeight;
+
+            $previewImage.draggable({
+                drag: function (e, ui) {
+                    if (ui.position.left >= 0) {
+                        ui.position.left = 0;
+                    }
+                    if (ui.position.top >= 0) {
+                        ui.position.top = 0;
+                    }
+                    if (ui.position.left <= -width) {
+                        ui.position.left = -width;
+                    }
+                    if (ui.position.top <= -height) {
+                        ui.position.top = -height;
+                    }
+                }
+            });
+        });
+
+       $('.fileupload').val('');
+    }
+
+    function errorHandler (e) {
+        throw e;
+    }
 
     function togglePlaceholder($e) {
         var me = this;
@@ -54,7 +143,7 @@ define(['compose',
         }).done(function () {
             me.$placeholder = $root.find('.ets-placeholder');
             me.$textarea = $('#input-describe');
-
+            uploadFile.call(me);
             deferred.resolve();
         });
     }
@@ -101,7 +190,6 @@ define(['compose',
         // goto select image
         'hub/st/image/select': function (topic) {
             var me = this;
-            console.log(topic);
             me.$element.find('.ets-select-image-area').attr('class', 'ets-select-image-area');
         },
 
@@ -137,7 +225,7 @@ define(['compose',
             }
         },
         // click image library
-        'dom/action/library.click': function (topic, $e, index) {           
+        'dom/action/library/item.click': function (topic, $e, index) {           
             var me = this;
             var $target = $($e.target);
             var imgUrl = $target.find('img').attr('src');
@@ -154,6 +242,15 @@ define(['compose',
             var me = this;
 
             me.publish('st/image/select');
+
+            $e.preventDefault();
+        },
+
+        // upload an image
+        'dom/action/image/upload.click': function (topic, $e, index) {
+            var me = this;
+
+            $('.fileupload').trigger('click');
 
             $e.preventDefault();
         }
