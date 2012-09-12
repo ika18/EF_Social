@@ -7,37 +7,28 @@ define([
     "use strict";
     
     var $ELEMENT = "$element";
+    var DELEGATE = "DELEGATE";
 
         // render template
     function render(deferred) {
         var me = this;
 
-        Deferred(function (dfd) {
-            me.html(template, me._json);
-            dfd.resolve();
-        }).done(function () {
-            deferred.resolve();
-        });
+        me.html(template, me._json,deferred);
     }
 
 
-    function statusEnabled(delegate, deferred)
+    function statusEnabled(delegate)
     {
         var me = this;
         me[$ELEMENT]
-            .data("DELEGATE",delegate)
+            .data(DELEGATE, delegate)
             .find("#next-step")
             .removeClass("ets-disabled")
             .addClass("ets-enabled")
-            .attr("data-action","navigation/nextStep.click");
-
-        if(deferred)
-        {
-            deferred.resolve();
-        }
+            .attr("data-action", "navigation/nextStep.click");
     }
 
-    function statusDisabled(deferred)
+    function statusDisabled()
     {
         var me = this;
         me[$ELEMENT]
@@ -45,11 +36,6 @@ define([
             .removeClass("ets-enabled")
             .addClass("ets-disabled")
             .removeAttr("navigation/nextStep.click");
-
-        if(deferred)
-        {
-            deferred.resolve();
-        }
     }
 
 
@@ -61,41 +47,33 @@ define([
             render.call(me, deferred);
         },
 
-        "hub/st/navigation/nextStep/enabled": function(topic, delegate, deferred) {
+        "hub/st/navigation/nextStep/enabled": function(topic, delegate) {
             var me = this;
-            statusEnabled.call(me, delegate, deferred);
+            statusEnabled.call(me, delegate);
         },
 
-        "hub/st/navigation/nextStep/disabled": function(topic, deferred) {
+        "hub/st/navigation/nextStep/disabled": function(topic) {
             var me = this;
-            statusDisabled.call(me, deferred);
+            statusDisabled.call(me);
         },
 
-        "hub/st/navigation/nextActivity": function(topic, deferred) {
+        "hub/st/navigation/nextActivity": function(topic) {
             var me = this;
             statusEnabled.call(me, function() {
                 alert("Active completed !!!");
                 //go to next active;
-            }, deferred);
+            });
         },
 
         "dom/action.click": $.noop,
 
-        "dom/action/navigation/nextStep.click":function(topic, $event,deferred){
+        "dom/action/navigation/nextStep.click":function(topic, $e){
             var me = this;
-            var delegate=  me[$ELEMENT].data("DELEGATE");
+            var delegate=  me[$ELEMENT].data(DELEGATE);
              
             if(delegate && typeof delegate==="function")
             {
-                Deferred(function(dfd){
-                    delegate();
-                    dfd.resolve();
-                }).done(function(){
-                    if(deferred)
-                    {
-                        deferred.resolve();
-                    }
-                });
+                delegate();
             }
             //console.log("nextStep clicked");
 
