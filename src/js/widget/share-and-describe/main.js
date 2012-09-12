@@ -28,6 +28,7 @@ define(['compose',
 
     var previewWidth = 298;
     var previewHeight = 298;
+    var VALID_SIG = 0;
 
     function uploadFile () {
         var me = this;
@@ -65,6 +66,8 @@ define(['compose',
         var $progressScreen = $root.find('.ets-gallery');
         var $galleryScreen = $root.find('.ets-progress-wrapper');
         var $cropScreen = $root.find('.ets-crop-area');
+
+        selectedImage = imgUrl;
 
         $(image).load(function () {
             $previewImage.attr("src", imgUrl).css("cursor", 'move');
@@ -180,18 +183,23 @@ define(['compose',
             });
         },
 
-        //validate page commit
-        'hub/st/commit/validate': function(topic){
-            var me=this;
+        _nextQues: function () {
+            if (VALID_SIG === 2) {
+                this.publish('navigation/nextStep/enabled', function () {
+                    $('.ets-select-image-area').add('.ets-describe-area').addClass('ets-none');
 
-            /*if commit is valid;*/
-            me.publish('st/navigation/nextStep/enabled', function delegate() {
-                alert("Next Screen...");
-            });
-            
-            //or 
-            //me.publish('st/navigation/nextActivity');
+                    $('.ets-profile-wall').removeClass('ets-none').find('.ets-profile-me').find('img').attr('src', $('.ets-crop-area img').attr('src')).end()
+                    .find('.ets-tooltip-content').find('p:eq(0)').text($('#input-describe').val());
+                });
+            }
+        },
 
+        _validte: function ($element) {
+            if (!$element.hasClass('ets-valid')) {
+                $element.addClass('ets-valid');
+                VALID_SIG++;
+                this._nextQues();
+            }  
         },
 
         // validate describe area, if no empty then green marked the tick icon
@@ -199,13 +207,17 @@ define(['compose',
         'hub/st/describe/validate': function (topic, $element) {
             var me = this;
             var len = $.trim($element.val()).length;
-            me.$element.find('.ets-describe-area').toggleClass('ets-valid', len !== 0);
-            me.publish("st/commit/validate");
+            if (len) {
+                me._validte(me.$element.find('.ets-describe-area'));
+            } else {
+                me.$element.find('.ets-describe-area').removeClass('ets-valid');
+            }
         },
 
         // goto select image
         'hub/st/image/select': function (topic) {
             var me = this;
+            VALID_SIG--;
             me.$element.find('.ets-select-image-area').attr('class', 'ets-select-image-area');
 
         },
@@ -213,7 +225,9 @@ define(['compose',
         // goto image preview
         'hub/st/image/preview': function (topic) {
             var me = this;
+            VALID_SIG++;
             me.$element.find('.ets-select-image-area').addClass('ets-selected-image ets-valid');
+            me._nextQues();
         },
 
         // dom interaction

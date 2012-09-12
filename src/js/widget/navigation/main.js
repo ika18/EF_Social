@@ -47,17 +47,17 @@ define([
             render.call(me, deferred);
         },
 
-        "hub/st/navigation/nextStep/enabled": function(topic, delegate) {
+        "hub/navigation/nextStep/enabled": function(topic, delegate) {
             var me = this;
             statusEnabled.call(me, delegate);
         },
 
-        "hub/st/navigation/nextStep/disabled": function(topic) {
+        "hub/navigation/nextStep/disabled": function(topic) {
             var me = this;
             statusDisabled.call(me);
         },
 
-        "hub/st/navigation/nextActivity": function(topic) {
+        "hub/navigation/nextActivity": function(topic) {
             var me = this;
             statusEnabled.call(me, function() {
                 alert("Active completed !!!");
