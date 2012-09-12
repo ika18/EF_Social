@@ -59,6 +59,7 @@ define(['compose',
         });
     }
 
+
     // on template rendered
     // initialize some stuffs
     /*
@@ -90,12 +91,27 @@ define(['compose',
             });
         },
 
+        //validate page commit
+        'hub/st/commit/validate': function(topic){
+            var me=this;
+
+            /*if commit is valid;*/
+            me.publish('st/navigation/enabled', function delegate() {
+                alert("Next Screen...");
+            });
+            
+            //or 
+            //me.publish('st/navigation/nextActivity');
+
+        },
+
         // validate describe area, if no empty then green marked the tick icon
         // or, grey out the tick icon
         'hub/st/describe/validate': function (topic, $element) {
             var me = this;
             var len = $.trim($element.val()).length;
             me.$element.find('.ets-describe-area').toggleClass('ets-valid', len !== 0);
+            me.publish("st/commit/validate");
         },
 
         // goto select image
@@ -103,6 +119,7 @@ define(['compose',
             var me = this;
             console.log(topic);
             me.$element.find('.ets-select-image-area').attr('class', 'ets-select-image-area');
+
         },
 
         // goto image preview
