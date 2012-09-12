@@ -1,7 +1,7 @@
 define([
     "jquery",
     'troopjs-core/component/widget',
-    'template!./next-step.html',
+    'template!./navigation.html',
     'troopjs-utils/deferred'
 ], function DemoModule($, Widget, template, Deferred) {
     "use strict";
@@ -29,7 +29,7 @@ define([
             .find("#next-step")
             .removeClass("ets-disabled")
             .addClass("ets-enabled")
-            .attr("data-action","navigation.click");
+            .attr("data-action","navigation/nextStep.click");
 
         if(deferred)
         {
@@ -44,7 +44,7 @@ define([
             .find("#next-step")
             .removeClass("ets-enabled")
             .addClass("ets-disabled")
-            .removeAttr("navigation.click");
+            .removeAttr("navigation/nextStep.click");
 
         if(deferred)
         {
@@ -61,12 +61,12 @@ define([
             render.call(me, deferred);
         },
 
-        "hub/st/navigation/enabled": function(topic, delegate, deferred) {
+        "hub/st/navigation/nextStep/enabled": function(topic, delegate, deferred) {
             var me = this;
             statusEnabled.call(me, delegate, deferred);
         },
 
-        "hub/st/navigation/disabled": function(topic, deferred) {
+        "hub/st/navigation/nextStep/disabled": function(topic, deferred) {
             var me = this;
             statusDisabled.call(me, deferred);
         },
@@ -81,7 +81,7 @@ define([
 
         "dom/action.click": $.noop,
 
-        "dom/action/navigation.click":function(topic, $event,deferred){
+        "dom/action/navigation/nextStep.click":function(topic, $event,deferred){
             var me = this;
             var delegate=  me[$ELEMENT].data("DELEGATE");
              

@@ -185,7 +185,7 @@ define(['compose',
             var me=this;
 
             /*if commit is valid;*/
-            me.publish('st/navigation/enabled', function delegate() {
+            me.publish('st/navigation/nextStep/enabled', function delegate() {
                 alert("Next Screen...");
             });
             
