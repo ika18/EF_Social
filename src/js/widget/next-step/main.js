@@ -55,10 +55,7 @@ define([
 
 
 
-    return Widget.extend(function($element, displayName, type) {
-        //var me = this;
-        //console.log("type="+type);
-    },{
+    return Widget.extend({
         "sig/start": function(signal, deferred) {
             var me = this;
             render.call(me, deferred);
@@ -77,12 +74,9 @@ define([
         "hub/st/navigation/nextActivity": function(topic, deferred) {
             var me = this;
             statusEnabled.call(me, function() {
-
                 alert("Active completed !!!");
                 //go to next active;
-
             }, deferred);
-
         },
 
         "dom/action.click": $.noop,
@@ -93,15 +87,16 @@ define([
              
             if(delegate && typeof delegate==="function")
             {
-                delegate();
-               
-                if(deferred)
-                {
-                    deferred.resolve();
-                }
-
+                Deferred(function(dfd){
+                    delegate();
+                    dfd.resolve();
+                }).done(function(){
+                    if(deferred)
+                    {
+                        deferred.resolve();
+                    }
+                });
             }
-
             //console.log("nextStep clicked");
 
         }
