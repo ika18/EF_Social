@@ -26,9 +26,10 @@ define(['compose',
         
     };
 
-    var previewWidth = 298;
-    var previewHeight = 298;
-    var VALID_SIG = 0;
+    var PREVIEW_WIDTH = 298;
+    var PREVIEW_HEIGHT = 298;
+    var WARN_TEXT_LENGTH = 240;
+    var validSig = 0;
 
     function uploadFile () {
         var me = this;
@@ -79,18 +80,18 @@ define(['compose',
 
             if (imgWidth <= imgHeight) {
                 $previewImage.css({
-                    width: previewWidth,
-                    height: previewWidth * imgHeight / imgWidth
+                    width: PREVIEW_WIDTH,
+                    height: PREVIEW_WIDTH * imgHeight / imgWidth
                 });
             } else {
                 $previewImage.css({
-                    width: previewHeight * imgWidth / imgHeight,
-                    height: previewHeight
+                    width: PREVIEW_HEIGHT * imgWidth / imgHeight,
+                    height: PREVIEW_HEIGHT
                 });
             }
 
-            var width = $previewImage.width() - previewWidth;
-            var height = $previewImage.height() - previewHeight;
+            var width = $previewImage.width() - PREVIEW_WIDTH;
+            var height = $previewImage.height() - PREVIEW_HEIGHT;
 
             $previewImage.draggable({
                 drag: function (e, ui) {
@@ -184,7 +185,7 @@ define(['compose',
         },
 
         _nextQues: function () {
-            if (VALID_SIG === 2) {
+            if (validSig === 2) {
                 this.publish('navigation/nextStep/enabled', function () {
                     $('.ets-select-image-area').add('.ets-describe-area').addClass('ets-none');
 
@@ -197,7 +198,7 @@ define(['compose',
         _validte: function ($element) {
             if (!$element.hasClass('ets-valid')) {
                 $element.addClass('ets-valid');
-                VALID_SIG++;
+                validSig++;
                 this._nextQues();
             }  
         },
@@ -217,7 +218,7 @@ define(['compose',
         // goto select image
         'hub/st/image/select': function (topic) {
             var me = this;
-            VALID_SIG--;
+            validSig--;
             me.$element.find('.ets-select-image-area').attr('class', 'ets-select-image-area');
 
         },
@@ -225,7 +226,7 @@ define(['compose',
         // goto image preview
         'hub/st/image/preview': function (topic) {
             var me = this;
-            VALID_SIG++;
+            validSig++;
             me.$element.find('.ets-select-image-area').addClass('ets-selected-image ets-valid');
             me._nextQues();
         },
@@ -239,6 +240,14 @@ define(['compose',
             var $target = $($e.target);
 
             me.publish('st/describe/validate', $target);
+
+            var $describeCounter = $('#input-describe_counter'); 
+            var val = $.trim($target.val());        
+            if(val.length >= WARN_TEXT_LENGTH){
+                $describeCounter.addClass('ets-warning');
+            }else{
+                $describeCounter.removeClass('ets-warning');
+            }
         },
         // focus and blue describe textarea
         'dom/action/describe.focusin.focusout': function (topic, $e, index) {
@@ -284,6 +293,15 @@ define(['compose',
             $('.fileupload').trigger('click');
 
             $e.preventDefault();
+        },
+
+        'dom/action/placeholder.click': function (topic, $e) {
+            var me = this;
+            var $target = $($e.target);
+
+            $target.addClass('ets-none');
+
+            $('#input-describe').focus();
         }
 
     })
