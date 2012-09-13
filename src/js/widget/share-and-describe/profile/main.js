@@ -72,6 +72,19 @@ define(['jquery',
             });
 
             $e.preventDefault();
+        },
+        'dom/action/edit/profile.click': function (topic, $e) {
+            $('.ets-select-image-area').add('.ets-describe-area').removeClass('ets-none');
+
+            $('.ets-profile-wall').addClass('ets-none');
+        },
+        'dom/action/friend/add.click': function (topic, $e) {
+            var $target = $($e.target);
+
+            $target.addClass('ets-disabled').text('Friend request sent');
+            .removeAttr('data-action');
+
+            $e.preventDefault();
         }
     });
 });

@@ -68,8 +68,6 @@ define(['compose',
         var $galleryScreen = $root.find('.ets-progress-wrapper');
         var $cropScreen = $root.find('.ets-crop-area');
 
-        selectedImage = imgUrl;
-
         $(image).load(function () {
             $previewImage.attr("src", imgUrl).css("cursor", 'move');
 

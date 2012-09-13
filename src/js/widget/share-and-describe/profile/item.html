@@ -17,12 +17,12 @@
 
             <p class="ets-tooltip-btns">
                 <%if (data[i].isMe) {%>
-                <span class="ets-btn-small ets-btn-white" id="edit-profile">
+                <span class="ets-btn-small ets-btn-white" data-action="edit/profile">
                     <span>Edit your entry</span>
                 </span>
                 <%} else {%>
                 <%if (data[i].friendStatus===-1) {%>
-                <span class="ets-btn-small ets-btn-white">
+                <span class="ets-btn-small ets-btn-white" data-action="friend/add">
                     <span>Add to friend</span>
                 </span>
                 <%} else if (data[i].friendStatus===0) {%>
