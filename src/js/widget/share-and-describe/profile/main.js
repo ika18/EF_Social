@@ -12,9 +12,20 @@ define(['jquery',
             me.html(template, me._json);
             dfd.resolve();
         }).done(function () {
+            onRender.call(me);
+
+
             deferred.resolve();
         });
-        
+
+    }
+
+    function onRender() {
+        var $wrapper = $('.ets-act-st');
+
+        $('.ets-profile-me a').trigger('click');
+
+        this.edge = $wrapper.offset().left + 980;
     }
 
     return Widget.extend({
@@ -40,9 +51,26 @@ define(['jquery',
         'dom/action/profile/item.click': function (topic, $e) {
             var me = this;
             var $target = $($e.target);
+            var $li = $target.closest('li');
+            var $tooltip = $target.next();
+            var height = $tooltip.height();
+            var width = $tooltip.width();
 
-            $target.closest('li').siblings().removeClass('ets-on').end()
+            $li.siblings().removeClass('ets-on').end()
             .toggleClass('ets-on');
+
+            $tooltip.css('margin-top', - (height / 2));
+
+            if (me.edge - $tooltip.offset().left < width) {
+                $tooltip.addClass('ets-right-arrow');
+            }
+
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest($tooltip).length) {
+                    $li.removeClass('ets-on');
+                    $(document).off(e);
+                }
+            });
 
             $e.preventDefault();
         }

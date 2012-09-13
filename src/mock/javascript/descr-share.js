@@ -37,9 +37,9 @@ $(function() {
         var val = $.trim($describe.val());        
         if(val.length >= warmTextLength){
             console.log($LeftCharNum);
-            $describeCounter.addClass('warmColor');
+            $describeCounter.addClass('ets-warning');
         }else{
-            $describeCounter.removeClass('warmColor');
+            $describeCounter.removeClass('ets-warning');
         }
     }
 
