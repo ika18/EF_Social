@@ -23,8 +23,6 @@ define(['jquery',
     function onRender() {
         var $wrapper = $('.ets-act-st');
 
-        $('.ets-profile-me a').trigger('click');
-
         this.edge = $wrapper.offset().left + 980;
     }
 
@@ -53,11 +51,12 @@ define(['jquery',
             var $target = $($e.target);
             var $li = $target.closest('li');
             var $tooltip = $target.next();
-            var height = $tooltip.height();
-            var width = $tooltip.width();
 
             $li.siblings().removeClass('ets-on').end()
             .toggleClass('ets-on');
+
+            var height = $tooltip.height();
+            var width = $tooltip.width();
 
             $tooltip.css('margin-top', - (height / 2));
 

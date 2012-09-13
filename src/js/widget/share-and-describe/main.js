@@ -191,6 +191,8 @@ define(['compose',
 
                     $('.ets-profile-wall').removeClass('ets-none').find('.ets-profile-me').find('img').attr('src', $('.ets-crop-area img').attr('src')).end()
                     .find('.ets-tooltip-content').find('p:eq(0)').text($('#input-describe').val());
+
+                    $('.ets-profile-me a').trigger('click');
                 });
             }
         },
