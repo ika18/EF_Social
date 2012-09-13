@@ -81,7 +81,7 @@ define(['jquery',
         'dom/action/friend/add.click': function (topic, $e) {
             var $target = $($e.target);
 
-            $target.addClass('ets-disabled').text('Friend request sent');
+            $target.addClass('ets-disabled').text('Friend request sent')
             .removeAttr('data-action');
 
             $e.preventDefault();
