@@ -24,22 +24,16 @@ define([
             .data(DELEGATE, delegate)
             .find("#next-step")
             .removeClass("ets-disabled")
-            .addClass("ets-enabled")
             .attr("data-action", "navigation/nextStep.click");
     }
 
     function statusDisabled()
     {
         var me = this;
-        me[$ELEMENT]
-            .find("#next-step")
-            .removeClass("ets-enabled")
+        $("#next-step")
             .addClass("ets-disabled")
-            .removeAttr("navigation/nextStep.click");
+            .removeAttr("data-action");
     }
-
-
-
 
     return Widget.extend({
         "sig/start": function(signal, deferred) {

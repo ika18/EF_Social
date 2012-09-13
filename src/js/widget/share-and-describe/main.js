@@ -210,9 +210,12 @@ define(['compose',
             var len = $.trim($element.val()).length;
             if (len) {
                 me._validte(me.$element.find('.ets-describe-area'));
+                me._nextQues();
             } else {
                 me.$element.find('.ets-describe-area').removeClass('ets-valid');
+                me.publish('navigation/nextStep/disabled');
             }
+            
         },
 
         // goto select image
@@ -220,7 +223,7 @@ define(['compose',
             var me = this;
             validSig--;
             me.$element.find('.ets-select-image-area').attr('class', 'ets-select-image-area');
-
+            me.publish('navigation/nextStep/disabled');
         },
 
         // goto image preview
