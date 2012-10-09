@@ -1,4 +1,5 @@
 @component-icon-img: "../img/ets-component-icon.png";
+@act-st-img: "../img/ets-act-st.png";
 
 .icon-people {
     background: url("@{component-icon-img}") -468px 0 no-repeat transparent;
@@ -19,11 +20,12 @@
     vertical-align: text-bottom;
 }
 .ets-act-st {
+    text-align: center;
     .white-shadow {
         text-shadow: 0 1px 1px #FFF;
     }
 
-    &.ets-btn-white.ets-disabled , .ets-btn-white.ets-disabled{
+    &.ets-btn-white.ets-disabled, .ets-btn-white.ets-disabled{
         color: #C1C3C7;
     }
 
@@ -33,137 +35,25 @@
         box-shadow: inset 0 0 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(0,0,0,0.1), inset 0 -1px 0 white;
     }
 
-    h4 {
-        color: #6f6f6f;
-        font-size: 15px;
-        .white-shadow();
-        line-height: 25px;
-        margin-bottom: 5px;
-        .icon-tick {
-            background: url("@{component-icon-img}") -304px -100px no-repeat transparent;
-            .inline-block();
-            .size(21px, 20px);
-            margin-right: 5px;
-            vertical-align: text-bottom;
-        }
-    }
-
-    .ets-valid {
-        h4 {
-            .icon-tick {
-                background: url("@{component-icon-img}") -199px -100px no-repeat transparent;    
-            }
-        }
-    }
-
-    .ets-describe-area {
-        float: left;
-        margin-left: 114px;
-        width: 320px;
-        text-align: left;
-
-        .ets-describe-text {
-            .box();
-            .border-radius(6px);
-            height: 243px;
-            padding: 6px;
-            position: relative;
-            textarea {
-                .size(292px, 209px);
-                resize: none;
-                border: 0;
-                margin: 0;
-                padding: 8px;
-                .border-radius(6px 6px 0 0);
-                float: left;
-                font-size: 18px;
-            }
-
-            .ets-placeholder {
-                position: absolute;
-                font-size: 18px;
-                color: gray;
-                top: 14px;
-                left: 12px;
-            }
-
-
-            .ets-helper {
-                background-color: #eaf7f7;
-                margin: 0;
-                padding: 0;
-                clear: both;
-                line-height: 18px;
-                .border-radius(0 0 8px 8px);
-                text-align: center;
-                color: #707a81;
-                .white-shadow();
-                strong {
-                    color: #09aedd;
-
-                    &.charas-num-overflow{
-                        color:red;
-                    }
-                }
-            }
-            #input-describe_counter {
-                font-size: 12px;
-                background-color: #eaf7f7;
-                margin: 0;
-                padding: 0;
-                clear: both;
-                line-height: 18px;
-                .border-radius(0 0 6px 6px);
-                text-align: center;
-                color: #707a81;
-                .white-shadow();
-                #input-describe_count {
-                    color: #09aedd;
-                }
-                &.ets-warning{                
-                    background-color: #ffe9d8;
-                    #input-describe_count {
-                        color: #e37b00;
-                    }
-                }
-            }
-        }
-
-        .share-info {
-            padding: 4px;
-            margin-top: 18px;
-            line-height: 28px;
-            .box();
-            label {
-                display: block;
-                color: #757575;
-                font-size: 14px;
-                cursor: pointer;
-
-                .icon-people {
-                    margin: 0 5px 0 10px;
-                }
-            }
-            &.share-info-hover{
-                background-color : #EAEAEA;
-            }
-        }
-    }
-
+    
     .ets-select-image-area {
-        float: right;
-        margin-right: 114px;
-        text-align: center;
-        width: 340px;
-        h4 {
-            text-align: left;
-        }
+        position: relative;
+        .inline-block();
 
         .ets-images-area {
-            .size(330px, 310px);
+            .size(331px, 312px);
             .box();
-            padding: 0;            
+            padding: 4px 10px 4px 4px;
             position: relative;
+            .ets-tooltip {
+                display: block;
+                top: -34px;
+                left: 50%;
+                margin-left: -137px;
+                .ets-tooltip-content {
+                    padding: 6px 10px;
+                }
+            }
 
             .ets-gallery {
                 position: relative;
@@ -181,7 +71,6 @@
                              .size(92px , 92px);
                             &:hover {
                                 border-color: white;
-                                // box-shadow: 0 0 4px #999;
                             }
                             img{
                                 .size(92px , 92px);
@@ -189,80 +78,21 @@
                         }
                     }
                 }
-
-            }
-
-            .ets-progress-wrapper {
-                background: #b7b7b7;
-                .size(208px, 50px);
-                box-shadow: inset 0 0 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(0,0,0,0.1), inset 0 -1px 0 white;
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                margin: -25px 0 0 -104px;
-                display: none;
-
-                .ets-progress-bar {
-                    margin: 4px 3px;
-                    position: relative;
-                    overflow: hidden;
-                    .size(202px, 42px);
-                    .ets-progress-track {
-                        .size(110%, 100%);
-                        position: absolute;
-                        background: url("../img/progress-bar.png") left top no-repeat;
-                    }
-                }
-
-                p {
-                    margin-top: 8px;
-                    .white-shadow();
-                }
-            }
-
-            .ets-crop-area {
-                .size(100%, 100%);
-                position: relative;
-                overflow: hidden;
-                display: none;
-                .resize{
-                    width: 100%;
-                    height: 100%;
-                }
             }
         }
         
+        .ets-upload {
+            padding-top: 12px;
+            font-size: 14px;
+            a {
+                color: #0092c2;
+                text-decoration: none;
 
-        .ets-btn {
-            margin-top: 10px;
-        }
-
-        #change-image{
-            display: none;
-        }
-
-        &.ets-selected-image{
-            .ets-images-area{                
-                .size(300px,298px);
-                padding: 6px;
-            }
-            .ets-gallery{
-                display: none;
-            }
-
-            .ets-crop-area{
-                display: block;                
-            }
-
-            #upload-image{
-                display: none;
-            }
-
-            #change-image{
-                display: inline-block;                
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
-
     }
 
     .ets-profile-wall {
