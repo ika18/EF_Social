@@ -193,6 +193,7 @@
             margin: 8px;
 
             a {
+                position: relative;
                 display: block;
                 padding: 5px;
                 .size(110px, 110px);
@@ -203,6 +204,14 @@
                 }
                 img{
                     .size(110px,110px);
+                }
+
+                .ets-shadow {
+                    position: absolute;
+                    .size(100%, 100%);
+                    top: 5px;
+                    left: 5px;
+                    background: url("@{act-st-img}") left -72px no-repeat transparent;
                 }
             }
             &.ets-on {
