@@ -96,14 +96,13 @@
         }
 
         .ets-profile-image {
+            position: relative;
             .size(310px, 310px);
             padding: 5px;
             .vgradient-bg-color(#fff, #f1f1f1);
             .border-radius(5px);
-            z-index: 1;
-            position: relative;
             .box-shadow(0 0 5px #999);
-
+            z-index: 1;
             .ets-corp-area {
                 .size(100%, 100%);
             }
@@ -182,9 +181,8 @@
     }
 
     .ets-profile-wall {
-        .inline-block();
-        width: 840px;
-
+        width: 952px;
+        margin: 0 auto;
         &.ets-none {
             display: none;
         }
@@ -196,20 +194,22 @@
 
             a {
                 display: block;
-                padding: 6px;
-                .size(92px,92px);
+                padding: 5px;
+                .size(110px, 110px);
                 &:hover {
-                    background-color: #FFF;
-                    box-shadow: 0 0 4px #999;
+                    .vgradient-bg-color(#fff, #f1f1f1);
+                    .border-radius(5px);
+                    .box-shadow(0 0 5px #999);
                 }
                 img{
-                    .size(92px,92px);
+                    .size(110px,110px);
                 }
             }
             &.ets-on {
                 a {
-                    background-color: #FFF;
-                    box-shadow: 0 0 4px #999;
+                    .vgradient-bg-color(#fff, #f1f1f1);
+                    .border-radius(5px);
+                    .box-shadow(0 0 5px #999);
                 }
             }
 
