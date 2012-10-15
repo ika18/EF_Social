@@ -27,6 +27,7 @@ define([
 		var me= this;
 		var myself= me.$element.data("d");
 
+
 		if(myself && me._json){
 			var p1=0,p2=MYPOSITION;
 			$(me._json).each(function (index, profile) {
@@ -37,6 +38,7 @@ define([
 					p1=index;
 				};
 			});
+			//fix position
 			if(p1>=0 && p2>=0 && p1<=me._json.length && p2<=me._json.length){
 				var temp=me._json[p1];
 				me._json[p1]=me._json[p2];
@@ -55,6 +57,8 @@ define([
 		}).done(function (argument) {
 			var $wrapper = $('.ets-act-st');
 	        me.edge = $wrapper.offset().left + 980;
+	        //default my profile info that is open
+	        me.$element.find('.ets-profile-me a').trigger('click');
 	        deferred.resolve();
 		});
 		
