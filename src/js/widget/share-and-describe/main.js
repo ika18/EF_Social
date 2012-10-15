@@ -23,6 +23,7 @@ define(['compose',
 			previewImage.call(me);
 			countDescribe.call(me);
 		}).done(function(){
+			openningAnimation.call(me);
 			deferred.resolve();
 		});
 
@@ -94,13 +95,11 @@ define(['compose',
 
         $('.share-info input:checkbox').etsCheckbox();
 
-        //make effect enable
-        $root.find(".ets-describe-area").effect( "slide");
         //check describe valid
         me.publish('st/describe/validate', $inputDescribe);
 	}
 
-	function onSubmit (argument) {
+	function onSubmit () {
 		var me=this;
 		var $root=me.$element;
 		var data={
@@ -108,8 +107,58 @@ define(['compose',
 			"desc": $root.find("#input-describe").val()
 		};
 
-		me.publish("picture-wall-screen/show",data);
+		//play ending animation
+		Deferred(function(dfd){
+			endingAnimation.call(me, true, dfd);
+		}).done(function(){
+			me.publish("picture-wall-screen/show",data);
+		});
 	}
+
+	function openningAnimation(deferred){
+		var me=this;
+		var $root=me.$element;
+		$root.find(".ets-describe-area").show("slide", { direction: "left" }, 800, function(){
+			if(deferred){
+				deferred.resolve();
+			}
+		});
+	};
+
+	function endingAnimation(isShrink, deferred){
+		var me=this;
+		var $root=me.$element;
+
+		Deferred(function(dfd){
+			//hide describe area
+			$(".ets-describe-area").hide("slide", { direction: "left" }, 800, function(){
+				dfd.resolve();
+			});
+		}).done(function(){
+			if(isShrink){
+				$root.find(".ets-btn-change").hide();
+				$root.find(".ets-profile-image img").css({"width": "100%", "height": "100%"});
+				$root.find(".ets-profile-image").animate({  
+    				height:"110",
+	    			width:"110"
+				},500,function(){
+					$(".active-container .ets-act-st").fadeOut(200, function(){
+						deferred.resolve();
+					});
+				});
+
+			}else{
+
+				$(".active-container .ets-act-st").fadeOut(200, function(){
+					deferred.resolve();
+				});
+			}
+
+		}).fail(function(){
+			deferred.fail();
+		});
+
+	};
 
 	
 	return Widget.extend({
@@ -140,9 +189,14 @@ define(['compose',
         //change image
 		"dom/action/image/change.click":function(topic, $e, index){
 			var me=this;
-			var data={};
-			me.publish("choose-picture-screen/show",data);
-			$e.preventDefault();
+
+			Deferred(function(dfd){
+				endingAnimation.call(me, false, dfd);
+			}).done(function(){
+				var data={};
+				me.publish("choose-picture-screen/show",data);
+				$e.preventDefault();
+			});
 		},
 
 		"dom/action/describe.input":function (topic, $e, index) {
