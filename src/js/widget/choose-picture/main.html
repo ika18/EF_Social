@@ -1,0 +1,22 @@
+<div class="ets-create-profile">
+    <div class="ets-images-area">
+        <div class="ets-tooltip">
+            <div class="ets-tooltip-content">
+                Click over a picture to select it
+            </div>
+        </div>
+        <div class="ets-gallery">
+            <ul class="ets-cf">
+                <% for(var i=0;i<data.length;i++) { %>
+                <li><a href="#" data-action="image-library/item">
+                    <img src="<%=data[i].url %>" width="86" height="86"></a> </li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="manual-upload" data-weave="widget/choose-picture/upload-image/main">
+        </div>
+       
+    </div>
+</div>
+
+

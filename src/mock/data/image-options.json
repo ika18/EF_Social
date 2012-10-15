@@ -1,0 +1,13 @@
+[
+    {"url": "mock/image/defaultOptions/sushi.jpg"},                
+    {"url": "mock/image/defaultOptions/toast.jpg"},
+    {"url": "mock/image/defaultOptions/pasta.jpg"},                
+    {"url": "mock/image/defaultOptions/pizza.jpg"},                
+    {"url": "mock/image/defaultOptions/sallad.jpg"},                
+    {"url": "mock/image/defaultOptions/salmon.jpg"}, 
+    {"url": "mock/image/defaultOptions/seafood.jpg"},  
+    {"url": "mock/image/defaultOptions/chinese.jpg"},              
+    {"url": "mock/image/defaultOptions/hamburger.jpg"},                
+    {"url": "mock/image/defaultOptions/frenchfries.jpg"}
+]
+
