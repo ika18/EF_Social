@@ -8,4 +8,5 @@ define(["compose",
 
     return Application.extend({
     });
+
 });

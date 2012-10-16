@@ -33,6 +33,8 @@ require(['require','jquery', 'troopjs-bundle'], function App(require, $) {
         "troopjs-jquery/hashchange"], function App(Application) {
             $(document).ready(function () {
                 Application($(this.documentElement), "app/sharedescribe").start();
+
             });
+
     });
 });
