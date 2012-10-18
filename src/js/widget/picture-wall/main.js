@@ -74,7 +74,7 @@ define([
 		$others.animate({opacity: "0.001"}, 0);
 		$tooltip.animate({opacity: "0.001"}, 0);
 
-		//TODO: should be reflactor
+		//TODO: it is just expediency, should be reflactor
 		var len=$others.length;
 		$others.animate({opacity: "1"}, 800, function(){
 			--len;
@@ -94,6 +94,7 @@ define([
 		var $others=$(".ets-profile-wall li").not(".ets-profile-me");
 		var $tooltip=$(".ets-profile-me .ets-tooltip");
 
+		//TODO: it is just expediency, should be reflactor
 		var len=$others.length;
 		$others.animate({opacity:"0.01"},500, function(){
 			--len;
