@@ -9,12 +9,19 @@ define([
   var lightenScreen=function(route, data)
   {
     var me=this;
-    //if widget not exist then weave
-    me.$element.find('.active-container')
-      .unweave()
-      .data("d",data)
-      .attr("data-weave",route)
-      .weave();
+    var $root=this.$element;
+
+    $root.find(route).removeClass("ets-none")
+         .siblings().addClass("ets-none");
+    switch(route){
+      case ".share-and-describe-screen":
+        me.publish("st/share-and-describe/reload", data);
+      break;
+      case ".picture-wall-screen":
+        me.publish("st/picture-wall/reload", data);
+      break;
+
+    };
   };
 
   return Widget.extend({
@@ -24,13 +31,14 @@ define([
 
       //load screen via environment params
       var isNewUser=true;
-      var data = { msg: "hello i'm in DemoModule!"};
+      var data={};
+       me.publish("choose-picture-screen/show", data);
 
       if(isNewUser) {
         me.publish("choose-picture-screen/show", data);
       }
       else {
-        me.publish("share-and-describe-screen/show",data);
+        me.publish("picture-wall-screen/show",data);
       }
 
       if(deferred) {
@@ -41,20 +49,21 @@ define([
     //activate picture screen 
     "hub/choose-picture-screen/show": function(topic, data) {
         var me = this;
-        lightenScreen.call(me, "widget/choose-picture/main", data);
+        console.log("choose-picture-screen/show");
+        lightenScreen.call(me, ".choose-picture-screen", data);
     },
 
     //activate share and describe screen 
     "hub/share-and-describe-screen/show":function(topic, data){
         var me=this;
-        lightenScreen.call(me, "widget/share-and-describe/main", data);
-
+        lightenScreen.call(me, ".share-and-describe-screen", data);
     },
 
     //activate picture wall screen 
     "hub/picture-wall-screen/show":function(topic, data){
         var me=this;
-        lightenScreen.call(me, "widget/picture-wall/main", data);
+        console.log(data);
+        lightenScreen.call(me, ".picture-wall-screen", data);
     },
 
     // dom interaction
