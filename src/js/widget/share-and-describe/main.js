@@ -30,8 +30,6 @@ define(['compose',
 
 	}
 
-
-
 	function previewImage(data){
 		if(!data || !data.imageUrl) {
 			return;
@@ -84,7 +82,6 @@ define(['compose',
             });
 
 		});
-
 	}
 
 	function setValueForDescribe(data){
@@ -142,7 +139,6 @@ define(['compose',
 			magnifyAnimation.call(me, deferred);
 		}else{
 			$root.animate({opacity:"1"}, 200, function(){
-				$root.show();
 				$root.find(".ets-describe-area").show("slide", { direction: "left" }, 500, function(){
 				if(deferred){
 					deferred.resolve();
@@ -192,7 +188,6 @@ define(['compose',
 			deferred.resolve();
 		});
 	}
-
 
 	function magnifyAnimation(deferred){
 		var me=this;
@@ -263,7 +258,6 @@ define(['compose',
 			}else{
 				$completeBtn.removeClass("ets-abled").addClass("ets-disabled");
 			};
-			
 		},
 
 		// dom interaction

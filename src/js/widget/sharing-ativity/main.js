@@ -6,14 +6,14 @@ define([
 ], function DemoModule($, Widget, template, Deferred) {
   "use strict";
 
-  var lightenScreen=function(route, data)
+  var lightenScreen=function(screen, data)
   {
     var me=this;
     var $root=this.$element;
 
-    $root.find(route).removeClass("ets-none")
+    $root.find(screen).removeClass("ets-none")
          .siblings().addClass("ets-none");
-    switch(route){
+    switch(screen){
       case ".share-and-describe-screen":
         me.publish("st/share-and-describe/reload", data);
       break;
@@ -32,7 +32,6 @@ define([
       //load screen via environment params
       var isNewUser=true;
       var data={};
-       me.publish("choose-picture-screen/show", data);
 
       if(isNewUser) {
         me.publish("choose-picture-screen/show", data);
@@ -40,7 +39,6 @@ define([
       else {
         me.publish("picture-wall-screen/show",data);
       }
-
       if(deferred) {
         deferred.resolve();
       }
@@ -49,7 +47,6 @@ define([
     //activate picture screen 
     "hub/choose-picture-screen/show": function(topic, data) {
         var me = this;
-        console.log("choose-picture-screen/show");
         lightenScreen.call(me, ".choose-picture-screen", data);
     },
 
@@ -62,7 +59,6 @@ define([
     //activate picture wall screen 
     "hub/picture-wall-screen/show":function(topic, data){
         var me=this;
-        console.log(data);
         lightenScreen.call(me, ".picture-wall-screen", data);
     },
 
