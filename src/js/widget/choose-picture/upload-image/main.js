@@ -31,10 +31,16 @@ define([
 	function loadHandler(e){
 		var me=this;
 		var $root=me.$element;
+		var image=new Image();
 		var data={
 				"imageUrl": e.target.result
 		};
-		me.publish("share-and-describe-screen/show", data);
+		image.src=e.target.result;
+		$(image).load(function(){
+			me.publish("share-and-describe-screen/show", data);
+		});
+
+		
 	};
 
 	function errorHandler(e){
@@ -44,8 +50,6 @@ define([
 	return Widget.extend({
 		"sig/start": function(signal, deferred) {
 			var me=this;
-			//me.html(template, deferred);
-
 	        Deferred(function (renderDfd) {
 	        	me.html(template, deferred);
 	        	renderDfd.resolve();

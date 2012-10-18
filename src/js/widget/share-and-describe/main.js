@@ -37,15 +37,18 @@ define(['compose',
 			return;
 		};
 
-		var $root=this.$element;
-		var $previewImage=$root.find(".ets-corp-area img");
-
+		var $root= this.$element;
+		var $previewImage= $root.find(".ets-corp-area img");
+		
 		$previewImage.attr("src", data.imageUrl);
+		//avoid splash screen; 
 		$previewImage.load(function success(argument) {
 			$previewImage.css("cursor", 'move');
-
-			var imgWidth = $previewImage.width();
-            var imgHeight = $previewImage.height();
+			var image= new Image();
+			image.src=data.imageUrl;
+			// get image's orginal width and height avoid be override;
+			var imgWidth = image.width;
+            var imgHeight = image.height;
 
             if (imgWidth <= imgHeight) {
                 $previewImage.css({
