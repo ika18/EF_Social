@@ -179,7 +179,10 @@ define(['compose',
 		var $root=me.$element;
 
 		$root.find(".ets-btn-change").hide();
-		$root.find(".ets-profile-image img").css({"width": "100%", "height": "100%"});
+		$root.find(".ets-profile-image img")
+			 .css({"width": "100%", "height": "100%"})
+			 .animate({left:0,top:0},0);
+		 
 		$root.find(".ets-profile-image").animate({  
     		height:"110",
 	    	width:"110"
@@ -194,7 +197,9 @@ define(['compose',
 		var $root=me.$element;
 
 		Deferred(function(dfd){
-			$root.find(".ets-profile-image img").css({"width": "100%", "height": "100%"});
+			$(".ets-profile-image img")
+				.css({"width": "100%", "height": "100%"});
+
 			$root.find(".ets-profile-image").delay(1000).animate({  
     			height:"310",
 	    		width:"310"
