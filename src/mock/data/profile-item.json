@@ -13,7 +13,7 @@
         "profile": "mock/image/defaultOptions/chinese_s.jpg",
         "name": "Karl",
         "from": "Berlin, Germany",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/hamburger_s.jpg",
@@ -21,7 +21,7 @@
         "profile": "mock/image/defaultOptions/hamburger_s.jpg",
         "name": "Jacky",
         "from": "Shanghai, China",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/frenchfries_s.jpg",
@@ -29,7 +29,7 @@
         "profile": "mock/image/defaultOptions/frenchfries_s.jpg",
         "name": "Tony",
         "from": "Shanghai, China",
-        "friendStatus": 1
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/pasta_s.jpg",
@@ -53,7 +53,7 @@
         "profile": "mock/image/defaultOptions/sallad_s.jpg",
         "name": "Sophia",
         "from": "China",
-        "friendStatus": 1
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/salmon_s.jpg",
@@ -61,7 +61,7 @@
         "profile": "mock/image/defaultOptions/salmon_s.jpg",
         "name": "Ika",
         "from": "China",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/seafood_s.jpg",
@@ -77,7 +77,7 @@
         "profile": "mock/image/defaultOptions/sushi_s.jpg",
         "name": "Ophelia",
         "from": "Shanghai, China",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/toast_s.jpg",
@@ -85,7 +85,7 @@
         "profile": "mock/image/defaultOptions/toast_s.jpg",
         "name": "Kenny",
         "from": "China",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/chinese_s.jpg",
@@ -93,7 +93,7 @@
         "profile": "mock/image/defaultOptions/chinese_s.jpg",
         "name": "Karl",
         "from": "Berlin, Germany",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/hamburger_s.jpg",
@@ -101,7 +101,7 @@
         "profile": "mock/image/defaultOptions/hamburger_s.jpg",
         "name": "Jacky",
         "from": "Shanghai, China",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/frenchfries_s.jpg",
@@ -109,7 +109,7 @@
         "profile": "mock/image/defaultOptions/frenchfries_s.jpg",
         "name": "Tony",
         "from": "Shanghai, China",
-        "friendStatus": 1
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/pasta_s.jpg",
@@ -133,7 +133,7 @@
         "profile": "mock/image/defaultOptions/sallad_s.jpg",
         "name": "Sophia",
         "from": "China",
-        "friendStatus": 1
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/salmon_s.jpg",
@@ -141,7 +141,7 @@
         "profile": "mock/image/defaultOptions/salmon_s.jpg",
         "name": "Ika",
         "from": "China",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/seafood_s.jpg",
@@ -157,7 +157,7 @@
         "profile": "mock/image/defaultOptions/sushi_s.jpg",
         "name": "Ophelia",
         "from": "Shanghai, China",
-        "friendStatus": 0
+        "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/toast_s.jpg",
@@ -165,6 +165,6 @@
         "profile": "mock/image/defaultOptions/toast_s.jpg",
         "name": "Kenny",
         "from": "China",
-        "friendStatus": 0
+        "friendStatus": -1
     }
 ]

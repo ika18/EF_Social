@@ -47,10 +47,10 @@
             position: relative;
             .ets-tooltip {
                 display: block;
-                top: -34px;
+                top: -48px;
                 left: 50%;
                 margin-left: -137px;
-                font-size: 14px;
+                font-size: 13px;
                 .ets-tooltip-content {
                     padding: 6px 10px;
                 }
@@ -139,6 +139,7 @@
                 width: 310px;
                 .ets-tooltip-content {
                     padding: 6px 10px;
+                    text-align:left;
                 }
             }
 
@@ -156,7 +157,7 @@
                 .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.2));
             }
 
-            .counter,#input-describe_counter {
+            #input-describe_counter {
                 clear: both;
                 text-align: center;
                 font-size: 10px;
@@ -169,12 +170,25 @@
                     color: #09aedd;
                 }
 
+                #input-describe_count {
+                    color: #09aedd;
+                }
+                &.ets-warning{                
+                    background-color: #ffe9d8;
+                    #input-describe_count {
+                        color: #e37b00;
+                    }
+                }
             }
+           
            
             .share-info {
                 text-align: center;
                 margin-top: 5px;
                 margin-bottom: 10px;
+                .ets-checkbox{
+                    cursor: pointer;
+                }
             }
             .ets-btn {
                 font-weight: normal;

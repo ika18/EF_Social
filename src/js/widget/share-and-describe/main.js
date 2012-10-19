@@ -10,7 +10,7 @@ define(['compose',
 
 	var PREVIEW_WIDTH = 310;
     var PREVIEW_HEIGHT = 310;
-    var WARN_TEXT_LENGTH = 240;
+    var WARN_TEXT_LENGTH = 190;
     var isShrinked=false;
 
 	var render=function(deferred){
@@ -140,9 +140,10 @@ define(['compose',
 		}else{
 			$root.animate({opacity:"1"}, 200, function(){
 				$root.find(".ets-describe-area").show("slide", { direction: "left" }, 500, function(){
-				if(deferred){
-					deferred.resolve();
-				}
+					$root.find("#input-describe").focus();
+					if(deferred){
+						deferred.resolve();
+					}
 			});
 			});
 			
@@ -198,7 +199,8 @@ define(['compose',
 
 		Deferred(function(dfd){
 			$(".ets-profile-image img")
-				.css({"width": "100%", "height": "100%"});
+				.css({"width": "100%", "height": "100%"})
+				.animate({left:0, top:0 }, 0);
 
 			$root.find(".ets-profile-image").delay(1000).animate({  
     			height:"310",
@@ -211,6 +213,7 @@ define(['compose',
 		}).done(function(){
 			//show describe area
 			$(".ets-describe-area").show("slide", { direction: "left" }, 800, function(){
+				$root.find("#input-describe").focus();
 				if(deferred){
 					deferred.resolve();
 				}
@@ -290,7 +293,8 @@ define(['compose',
 			me.publish('st/describe/validate', $target);
 
             var $describeCounter = $('#input-describe_counter'); 
-            var val = $.trim($target.val());        
+            var val = $.trim($target.val()); 
+            console.log(val.length+":"+ WARN_TEXT_LENGTH);       
             if(val.length >= WARN_TEXT_LENGTH){
                 $describeCounter.addClass('ets-warning');
             }else{
