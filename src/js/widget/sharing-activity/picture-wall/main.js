@@ -59,8 +59,7 @@ define([
 		}).done(function () {
 			var $root=this.$element;
 			var $wrapper = $('.ets-act-st');
-		        me.edge = $wrapper.offset().left + 980;
-			$('.ets-profile-me a').trigger('click');
+	        me.edge = $wrapper.offset().left + 980;
 			openingAnimation.call(me, deferred);
 		});
 	}

@@ -124,7 +124,6 @@ define(['compose',
 			isShrinked=true;
 			endingAnimation.call(me, true, dfd);
 		}).done(function(){
-			console.log("on submit")
 			me.publish("picture-wall-screen/show",data);
 		}).fail(function(){
 			throw "share and describe: submit error"
@@ -234,7 +233,6 @@ define(['compose',
 
 		"hub/st/share-and-describe/reload": function (topic, data){
 			var me=this;
-			console.log("describe reload");
 			if(data){
 
 				if(isShrinked){
@@ -294,7 +292,7 @@ define(['compose',
 
             var $describeCounter = $('#input-describe_counter'); 
             var val = $.trim($target.val()); 
-            console.log(val.length+":"+ WARN_TEXT_LENGTH);       
+  
             if(val.length >= WARN_TEXT_LENGTH){
                 $describeCounter.addClass('ets-warning');
             }else{

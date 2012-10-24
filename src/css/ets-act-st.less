@@ -20,6 +20,7 @@
     vertical-align: text-bottom;
 }
 .ets-act-st {
+    position: relative;
     text-align: center;
     .white-shadow {
         text-shadow: 0 1px 1px #FFF;
@@ -298,4 +299,41 @@
         }
     }
 
+    .ets-msg-box {
+        .size(225px, 205px);
+        top: 50%;
+        left: 50%;
+        margin: -112px 0 0 -102px;
+        background-color: rgba(18, 28, 35, 0.75);
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7), inset 0 2px 1px rgba(255, 255, 255, 0.2);
+        position: absolute;
+        // display: none;
+
+        .ets-content {
+            padding: 10px 15px;
+            h3 {
+                font-size: 20px;
+                color: #FFF;
+                text-align: left;
+                text-shadow: 0 1px 1px black;
+            }
+            p {
+                color: rgba(255,255,255,0.6);
+                line-height: 1.3;   
+                font-size: 14px;
+                text-align: left;
+                margin: 5px 0;
+                text-shadow: 0 1px 1px black;
+            }
+
+            .ets-btn {
+                span {
+                    font-size: 12px;    
+                }
+            }
+        }
+    }
 }
