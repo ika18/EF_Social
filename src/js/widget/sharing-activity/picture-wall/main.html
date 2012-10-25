@@ -3,6 +3,7 @@
 	<li <%if(data[i].isMe){%>class="ets-profile-me"<%}%>>
 	    <a href="#" data-action="profile/item.click">
 	        <img src="<%=data[i].img%>">
+	        <div class="ets-shadow"></div>
 	    </a>
 	    <div class="ets-tooltip ets-left-arrow">
 	        <div class="ets-tooltip-content">
@@ -42,5 +43,6 @@
 	</li>
 	<% } %>
 </ul>
-
+<div class="screen-shadow ets-none">
+</div>
 <div class="ets-msg-box" data-weave="widget/sharing-activity/picture-wall/complete-msg/main"></div>

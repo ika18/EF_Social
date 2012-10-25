@@ -22,6 +22,9 @@ define([
             me.$element.fadeOut('fast', function () {
                 me.unweave();
             });
+
+            //show my profile
+            $('.ets-profile-me a').trigger('click');
         }
     });
 });

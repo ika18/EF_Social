@@ -197,10 +197,26 @@
             }
         }
     }
+    
+    .picture-wall-screen{
+        position:relative;
+    }
+    .screen-shadow{
+        position: absolute;
+        opacity: .9;
+        height: 420px;
+        width: 980px;
+        z-index: 0;
+        top: -10px;
+        left:0px;
+        background-color: #CDD2D8;
+    }
 
     .ets-profile-wall {
         width: 952px;
         margin: 0 auto;
+        position:absloute;
+        z-index: 4;
         &.ets-none {
             display: none;
         }
@@ -243,6 +259,7 @@
             .ets-tooltip {
                 left: 100%;
                 top: 50%;
+                z-index: 4;
                 .ets-tooltip-content {
                     padding: 0;
                 }

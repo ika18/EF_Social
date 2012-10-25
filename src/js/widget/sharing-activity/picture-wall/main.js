@@ -7,7 +7,8 @@ define([
 ], function DemoModule($, Widget, template, Deferred) {
 	"use strict";
 
-	var MYPOSITION=10;
+	var _myPosition=10;
+	var _isRendered=false;
 
 	function loadProfiles (deferred) {
 		var me=this;
@@ -25,15 +26,15 @@ define([
 	function updateMyProfile (data, deferred) {
 		var me= this;
 		var myself= data;
-		var p1=0,p2=MYPOSITION;
+		var p1=0,p2=_myPosition;
 
 		if(myself && me._json){
 			
 			$(me._json).each(function (index, profile) {
 				if(profile.isMe){
 					profile.describe=myself.desc;
-					profile.img= myself.imgUrl;
-					profile.profile=myself.imgUrl;
+					profile.img= myself.imageUrl;
+					profile.profile=myself.imageUrl;
 					p1=index;
 				};
 			});
@@ -45,10 +46,41 @@ define([
 			me._json[p1]=me._json[p2];
 			me._json[p2]=temp;
 		};
+		
+		if(_isRendered){
+			//render myself profile info;
+			var myProfile=me._json[p2];
+			renderMyself.call(me, myProfile);
+			
+			//show openning animation
+			var isShowAnimation=(me.$element.find(".ets-msg-box").css("display"))=="none";
+			//openingAnimation.call(me, deferred);
+			if(isShowAnimation){
+				openingAnimation.call(me, deferred);
+				return;
+			}
+			
+		}
 
 		if(deferred){
 			deferred.resolve();
-		};
+		}
+	}
+
+	function renderMyself(data){
+		var me=this;
+		var $profileMe=me.$element.find("li.ets-profile-me");
+
+		if(!data) return;
+		$profileMe.find("img").attr("src",data.img);
+		$profileMe.find(".ets-tooltip-content p:eq(0)").text(data.describe);
+		$profileMe.find(".ets-preson-info img").attr("src", data.profile);
+		$profileMe.find(".ets-preson-info .ets-name").text(data.name);
+		$profileMe.find(".ets-preson-info .ets-location").text(data.from);
+		
+		//locate position for profile tip and show it ;
+		var $wrapper = $('.ets-act-st');
+		me.edge = $wrapper.offset().left + 980;
 		
 	}
 
@@ -57,70 +89,56 @@ define([
 		Deferred(function (dfd) {
 			me.html(template, me._json, dfd);
 		}).done(function () {
-			var $root=this.$element;
-			var $wrapper = $('.ets-act-st');
-	        me.edge = $wrapper.offset().left + 980;
-			openingAnimation.call(me, deferred);
+			_isRendered=true;
+			if(deferred){
+				deferred.resolve();
+			}
 		});
 	}
 
 	function openingAnimation(deferred){
-		var me=this;
-		var $root=me.$element;
-		var $others=$root.find(".ets-profile-wall li").not(".ets-profile-me");
-		var $tooltip=$root.find(".ets-profile-me .ets-tooltip");
+		var $root=this.$element;
+		var $tooltip= $root.find(".ets-profile-me .ets-tooltip");
+		var $screenShadow= $root.find(".screen-shadow");
 
-		$others.animate({opacity: "0.001"}, 0);
+		$root.find('.ets-profile-me a').trigger('click');
 		$tooltip.animate({opacity: "0.001"}, 0);
-
-		//TODO: it is just expediency, should be reflactor
-		var len=$others.length;
-		$others.animate({opacity: "1"}, 800, function(){
-			--len;
-			if(len==0){
-				$tooltip.animate({ opacity:"1" }, 200, function(){
-					if(deferred){
-						deferred.resolve();
-					};
-				});
-			};
-		});
-		
-	}
-
-	function endingAnimation(deferred){
-		var me=this;
-		var $others=$(".ets-profile-wall li").not(".ets-profile-me");
-		var $tooltip=$(".ets-profile-me .ets-tooltip");
-
-		//TODO: it is just expediency, should be reflactor
-		var len=$others.length;
-		$others.animate({opacity:"0.01"},500, function(){
-			--len;
-			if(len==0){
-				$tooltip.animate({ opacity: "0.01", width: "toggle", height: "100%" }, 500, function(){
-     			if(deferred){
+		$screenShadow.show().animate({
+		   opacity:"0", 
+		}, 500, function(){
+			$tooltip.show().animate({ opacity:"1" }, 200, function(){
+				$screenShadow.hide();
+				if(deferred){
 					deferred.resolve();
 				};
 			});
-			}
-    		
 		});
-		
-		//$tooltip.animate({ opacity: 0, width: "toggle", height: "100%" }, 500, deferred.resolve);
+	}
 
+	function endingAnimation(deferred){
+		var $tooltip= this.$element.find(".ets-profile-me .ets-tooltip");
+		var $screenShadow= this.$element.find(".screen-shadow");
+
+		$screenShadow.show().animate({
+		   	opacity:"1", 
+		}, 500, function(){
+			$tooltip.animate({ opacity: "0.01", width: "toggle", height: "100%" }, 300 ,function(){
+				if(deferred){
+					deferred.resolve();
+				};
+			});
+		});
 	}
 
 	return Widget.extend({
 		"sig/initialize": function (signal, deferred) {
 			var me=this;
+
 			Deferred(function (dfd) {
 				loadProfiles.call(me,dfd);
 			}).done(function () {
 				var data= me.$element.data("d");
 				updateMyProfile.call(me, data, deferred);
-			}).fail(function () {
-				deferred.fail();
 			});
 		},
 
@@ -132,12 +150,7 @@ define([
 		"hub/st/picture-wall/reload": function(topic, data){
 			var me=this;
 			if(data){
-				Deferred(function(dfd){
-					updateMyProfile.call(me, data, dfd);
-					render.call(me,dfd);
-				}).done(function(){
-
-				});
+				updateMyProfile.call(me, data);
 			};
 		},
 
@@ -175,9 +188,8 @@ define([
 			var data={};
 			$(me._json).each(function (index, profile) {
 				if(profile.isMe){
-					data.imgUrl=profile.img;
-					data.imageUrl=profile.img;
-					data.desc=profile.describe;
+					data.imageUrl= profile.img;
+					data.desc= profile.describe;
 				};
 			});
 			

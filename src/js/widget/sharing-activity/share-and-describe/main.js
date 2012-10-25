@@ -24,7 +24,6 @@ define(['compose',
 			previewImage.call(me, me._json);
 			countDescribe.call(me, me._json);
 		}).done(function(){
-			//openingAnimation.call(me);
 			deferred.resolve();
 		});
 
@@ -115,7 +114,7 @@ define(['compose',
 		var me=this;
 		var $root=me.$element;
 		var data={
-			"imgUrl": $root.find(".ets-corp-area img").attr("src"),
+			"imageUrl": $root.find(".ets-corp-area img").attr("src"),
 			"desc": $root.find("#input-describe").val()
 		};
 
@@ -133,13 +132,15 @@ define(['compose',
 	function openingAnimation(deferred){
 		var me=this;
 		var $root=me.$element;
-
+		
 		if(isShrinked){
 			magnifyAnimation.call(me, deferred);
 		}else{
+			$root.find(".ets-tooltip").hide();
 			$root.animate({opacity:"1"}, 200, function(){
 				$root.find(".ets-describe-area").show("slide", { direction: "left" }, 500, function(){
 					$root.find("#input-describe").focus();
+					$root.find(".ets-tooltip").show();
 					if(deferred){
 						deferred.resolve();
 					}
@@ -154,6 +155,7 @@ define(['compose',
 		var $root=me.$element;
 
 		Deferred(function(dfd){
+			$root.find(".ets-tooltip").hide();
 			//hide describe area
 			$(".ets-describe-area").hide("slide", { direction: "left" }, 800, function(){
 				dfd.resolve();
@@ -178,6 +180,7 @@ define(['compose',
 		var me=this;
 		var $root=me.$element;
 
+		$root.find(".ets-tooltip").hide();
 		$root.find(".ets-btn-change").hide();
 		$root.find(".ets-profile-image img")
 			 .css({"width": "100%", "height": "100%"})
@@ -197,6 +200,7 @@ define(['compose',
 		var $root=me.$element;
 
 		Deferred(function(dfd){
+
 			$(".ets-profile-image img")
 				.css({"width": "100%", "height": "100%"})
 				.animate({left:0, top:0 }, 0);
@@ -212,14 +216,13 @@ define(['compose',
 		}).done(function(){
 			//show describe area
 			$(".ets-describe-area").show("slide", { direction: "left" }, 800, function(){
+				$root.find(".ets-tooltip").show();
 				$root.find("#input-describe").focus();
 				if(deferred){
 					deferred.resolve();
 				}
 			});
 			
-		}).fail(function(){
-			deferred.fail();
 		});
 
 	}
@@ -243,9 +246,7 @@ define(['compose',
 					});
 				}else{
 					previewImage.call(me, data);
-					Deferred(function(dfd){
-						openingAnimation.call(me, dfd);
-					});
+					openingAnimation.call(me);
 				}
 
 			}
