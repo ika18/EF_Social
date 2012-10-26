@@ -75,6 +75,7 @@
                              position: relative;
                             &:hover {
                                 border-color: white;
+                                .box-shadow(0 1px 2px #999);
                             }
                             img{
                                 .size(92px , 92px);
@@ -203,6 +204,10 @@
                 .ets-checkbox{
                     cursor: pointer;
                 }
+                .icon-people {
+                    display: inline-block;
+                    margin: 0 3px;
+                }
             }
             .ets-btn {
                 font-weight: normal;
@@ -281,13 +286,16 @@
                     word-break: break-all;  
                 }
                 .ets-tooltip-btns {
-                    text-align: center;                    
+                    text-align: center;              
                     em{
                         font-size: 20px;                        
                         font-weight: bolder;
                         vertical-align: top;
                         margin-top: 1px;
                         display: inline-block;
+                    }
+                    .ets-btn-small span {
+                        font-size: 12px;
                     }
                 }
             }
@@ -318,8 +326,12 @@
                     .ets-name {
                     }
                     .ets-location {
+                        img {
+                            position: static;
+                            margin-right: 3px;
+                        }
                         font-size: 10px;
-
+                        color: rgba(255,255,255, 0.9);
                     }
                 }
             }

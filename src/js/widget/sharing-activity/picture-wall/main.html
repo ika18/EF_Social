@@ -1,47 +1,47 @@
 <ul class="ets-profile-wall ets-cf">
-	<% for (var i = 0, len = data.length; i < len; i++ ) { %>
-	<li <%if(data[i].isMe){%>class="ets-profile-me"<%}%>>
-	    <a href="#" data-action="profile/item.click">
-	        <img src="<%=data[i].img%>">
-	        <div class="ets-shadow"></div>
-	    </a>
-	    <div class="ets-tooltip ets-left-arrow">
-	        <div class="ets-tooltip-content">
-	            <p><%=data[i].describe%></p>
+    <% for (var i = 0, len = data.length; i < len; i++ ) { %>
+    <li <%if(data[i].isMe){%>class="ets-profile-me"<%}%>>
+        <a href="#" data-action="profile/item.click">
+            <img src="<%=data[i].img%>">
+            <div class="ets-shadow"></div>
+        </a>
+        <div class="ets-tooltip ets-left-arrow">
+            <div class="ets-tooltip-content">
+                <p><%=data[i].describe%></p>
 
-	            <div class="ets-preson-info">
-	                <img src="<%=data[i].profile%>" width="40" height="40" alt="">
-	                <div class="ets-info">
-	                    <p class="ets-name"><%=data[i].name%></p>
-	                    <p class="ets-location"><%=data[i].from%></p>
-	                </div>
-	            </div>
+                <div class="ets-preson-info">
+                    <img src="<%=data[i].profile%>" width="40" height="40" alt="">
+                    <div class="ets-info">
+                        <p class="ets-name"><%=data[i].name%></p>
+                        <p class="ets-location"><img src="mock/image/flag.png" width="16" height="11"/><span><%=data[i].from%></span></p>
+                    </div>
+                </div>
 
-	            <p class="ets-tooltip-btns">
-	                <%if (data[i].isMe) {%>
-	                <span class="ets-btn-small ets-btn-white" data-action="edit-profile">
-	                    <span>Edit your entry</span>
-	                </span>
-	                <%} else {%>
-	                <%if (data[i].friendStatus===-1) {%>
-	                <span class="ets-btn-small ets-btn-white" data-action="friend/add">
-	                    <span>Add to friend</span>
-	                </span>
-	                <%} else if (data[i].friendStatus===0) {%>
-	                <span class="ets-btn-small ets-btn-white ets-disabled">
-	                    <span>Friend request sent</span>
-	                </span>
-	                <%} else if (data[i].friendStatus===1) {%>
-	                <span class="ets-btn-small ets-btn-white ets-disabled">
-	                    <span>Your are friends</span>
-	                </span>
-	                <%}%>
-	                <%}%>
-	            </p>
-	        </div>
-	    </div>
-	</li>
-	<% } %>
+                <p class="ets-tooltip-btns">
+                    <%if (data[i].isMe) {%>
+                    <span class="ets-btn-small ets-btn-white ets-btn-shadowed" data-action="edit-profile">
+                        <span>Edit your entry</span>
+                    </span>
+                    <%} else {%>
+                    <%if (data[i].friendStatus===-1) {%>
+                    <span class="ets-btn-small ets-btn-white ets-btn-shadowed" data-action="friend/add">
+                        <span>Add to friend</span>
+                    </span>
+                    <%} else if (data[i].friendStatus===0) {%>
+                    <span class="ets-btn-small ets-btn-white ets-btn-shadowed ets-disabled">
+                        <span>Friend request sent</span>
+                    </span>
+                    <%} else if (data[i].friendStatus===1) {%>
+                    <span class="ets-btn-small ets-btn-white ets-btn-shadowed ets-disabled">
+                        <span>Your are friends</span>
+                    </span>
+                    <%}%>
+                    <%}%>
+                </p>
+            </div>
+        </div>
+    </li>
+    <% } %>
 </ul>
 <div class="screen-shadow ets-none">
 </div>

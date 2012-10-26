@@ -72,11 +72,11 @@ define([
 		var $profileMe=me.$element.find("li.ets-profile-me");
 
 		if(!data) return;
-		$profileMe.find("img").attr("src",data.img);
+		$profileMe.find("img:eq(0)").attr("src",data.img);
 		$profileMe.find(".ets-tooltip-content p:eq(0)").text(data.describe);
-		$profileMe.find(".ets-preson-info img").attr("src", data.profile);
+		$profileMe.find(".ets-preson-info img:eq(0)").attr("src", data.profile);
 		$profileMe.find(".ets-preson-info .ets-name").text(data.name);
-		$profileMe.find(".ets-preson-info .ets-location").text(data.from);
+		$profileMe.find(".ets-preson-info .ets-location span").text(data.from);
 		
 		//locate position for profile tip and show it ;
 		var $wrapper = $('.ets-act-st');
