@@ -1,7 +1,8 @@
 (function ($) {
+    'use strict';
     var Checker = function (element) {
         var $element = $(element);
-        var wrap = "<div class='ets-checkbox'></div>"
+        var wrap = "<div class='ets-checkbox'></div>";
         $element.wrap(wrap);
         var $wrapper = $element.parent();
         var $label = $('label[for="' + $element.attr("id") + '"]');
@@ -41,4 +42,4 @@
             $(this).etsCheckbox();
         });
     });
-})(window.jQuery);
+}(window.jQuery));

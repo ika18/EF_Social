@@ -34,6 +34,5 @@ require(['require','jquery', 'troopjs-bundle'], function App(require, $) {
                 Application($(this.documentElement), "app/sharedescribe").start();
 
             });
-
     });
 });

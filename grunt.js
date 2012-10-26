@@ -41,37 +41,37 @@ module.exports = function(grunt) {
             }
         },
 
-        // requirejs : {
-        //     compile : {
-        //         options : {
-        //             paths: {
-        //                 'compose': EMPTY,
-        //                 "troopjs-core" : EMPTY,
-        //                 "troopjs-utils" : EMPTY,
-        //                 "troopjs-bundle" : EMPTY,
-        //                 'jquery': EMPTY,
-        //                 'jquery.ui': EMPTY,
-        //                 'jquery.etsCheckbox': EMPTY,
-        //                 'jquery.counter': EMPTY,
-        //                 'troopjs-requirejs/template': '../../resource/troopjs/troopjs-requirejs/template'
-        //             },
-        //             "map" : {
-        //                 "*" : {
-        //                     "template" : "troopjs-requirejs/template"
-        //                 }
-        //             },
-        //             mainConfigFile : "src/js/app.js",
-        //             out: 'dist/js/built.js',
-        //             include : grunt.utils._.union(grunt.helper("include", "src/js/**/*.js", ".*/js/(.+)\\.js", "$1")),
-        //             exclude: ['config.js', 'app.js', 'ets-checkbox.js'],
-        //             optimize : "none",
-        //             useStrict: true
-        //         }
-        //     }
-        // },
+        requirejs : {
+            compile : {
+                options : {
+                    paths: {
+                        'compose': EMPTY,
+                        "troopjs-core" : EMPTY,
+                        "troopjs-utils" : EMPTY,
+                        "troopjs-bundle" : EMPTY,
+                        'jquery': EMPTY,
+                        'jquery.ui': EMPTY,
+                        'jquery.etsCheckbox': EMPTY,
+                        'jquery.counter': EMPTY,
+                        'troopjs-requirejs/template': 'src/js/resource/troopjs/troopjs-requirejs/template'
+                    },
+                    "map" : {
+                        "*" : {
+                            "template" : "troopjs-requirejs/template"
+                        }
+                    },
+                    mainConfigFile : "src/js/app.js",
+                    out: 'dist/js/built.js',
+                    include : grunt.utils._.union(grunt.helper("include", "src/js/**/*.js", ".*/js/(.+)\\.js", "$1")),
+                    exclude: ["troopjs-requirejs/template", 'config.js', 'app.js', 'ets-checkbox.js'],
+                    optimize : "none",
+                    useStrict: true
+                }
+            }
+        },
 
         lint: {
-            beforerequire: ['grunt.js', 'src/js/*.js', 'src/js/widget/*.js'],
+            beforerequire: ['grunt.js', 'src/js/widget/*.js'],
             afterrequire: ['<%= requirejs.compile.options.out %>']
         },
 
@@ -110,6 +110,6 @@ module.exports = function(grunt) {
     });
 
     // Default task.
-    grunt.registerTask('default', 'clean lint:beforerequire less:production copy');
+    grunt.registerTask('default', 'clean lint:beforerequire less:production requirejs copy');
 
 };

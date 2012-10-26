@@ -67,17 +67,29 @@
                         display: inline-block;
                         float: left;
                         .size(104px , 104px);
+                        
                         a {
                             display: block;
                             border: 6px solid transparent;
                              .size(92px , 92px);
+                             position: relative;
                             &:hover {
                                 border-color: white;
                             }
                             img{
                                 .size(92px , 92px);
                             }
+                            .ets-shadow {
+                                z-index: 1;
+                                display: block;
+                                position: absolute;
+                                .size(100%, 100%);
+                                background: url("@{act-st-img}") -144px -72px no-repeat transparent;
+                                top: 0px;
+                            }
+
                         }
+                        
                     }
                 }
             }
@@ -339,7 +351,7 @@
                 text-shadow: 0 1px 1px black;
             }
             p {
-                color: rgba(255,255,255,0.6);
+                color: rgba(255,255,255,0.8);
                 line-height: 1.3;   
                 font-size: 14px;
                 text-align: left;
