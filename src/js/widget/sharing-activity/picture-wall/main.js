@@ -5,156 +5,155 @@ define([
     'troopjs-utils/deferred',
     'jquery.ui'
 ], function DemoModule($, Widget, template, Deferred) {
-	"use strict";
+    "use strict";
 
-	var _myPosition=10;
-	var _isRendered=false;
+    var _myPosition=10;
+    var _isRendered=false;
 
-	function loadProfiles (deferred) {
-		var me=this;
+    function loadProfiles (deferred) {
+        var me=this;
 
-		$.get("mock/data/profile-item.json")
-		 .done(function (res) {
-			me._json=res;
-			deferred.resolve();
-		}).fail(function () {
-			deferred.fail();
-			throw "Load user profile failed";
-		});
-	}
+        $.get("mock/data/profile-item.json")
+         .done(function (res) {
+            me._json=res;
+            deferred.resolve();
+        }).fail(function () {
+            deferred.fail();
+            throw "Load user profile failed";
+        });
+    }
 
-	function updateMyProfile (data, deferred) {
-		var me= this;
-		var myself= data;
-		var p1=0,p2=_myPosition;
+    function updateMyProfile (data, deferred) {
+        var me= this;
+        var myself= data;
+        var p1=0,p2=_myPosition;
 
-		if(myself && me._json){
-			
-			$(me._json).each(function (index, profile) {
-				if(profile.isMe){
-					profile.describe=myself.desc;
-					profile.img= myself.imageUrl;
-					profile.profile=myself.imageUrl;
-					p1=index;
-				};
-			});
-			
-		};
-		//fix position
-		if(p1>=0 && p2>=0 && p1<=me._json.length && p2<=me._json.length){
-			var temp=me._json[p1];
-			me._json[p1]=me._json[p2];
-			me._json[p2]=temp;
-		};
-		
-		if(_isRendered){
-			//render myself profile info;
-			var myProfile=me._json[p2];
-			renderMyself.call(me, myProfile);
-			
-			//show openning animation
-			var isShowAnimation=(me.$element.find(".ets-msg-box").css("display"))=="none";
-			//openingAnimation.call(me, deferred);
-			if(isShowAnimation){
-				openingAnimation.call(me, deferred);
-				return;
-			}
-			
-		}
+        if(myself && me._json){
+            
+            $(me._json).each(function (index, profile) {
+                if(profile.isMe){
+                    profile.describe=myself.desc;
+                    profile.img= myself.imageUrl;
+                    profile.profile=myself.imageUrl;
+                    p1=index;
+                };
+            });
+            
+        };
+        //fix position
+        if(p1>=0 && p2>=0 && p1<=me._json.length && p2<=me._json.length){
+            var temp=me._json[p1];
+            me._json[p1]=me._json[p2];
+            me._json[p2]=temp;
+        };
+        
+        if(_isRendered){
+            //render myself profile info;
+            var myProfile=me._json[p2];
+            renderMyself.call(me, myProfile);
+            
+            //show openning animation
+            var isShowAnimation=(me.$element.find(".ets-msg-box").css("display"))=="none";
+            //openingAnimation.call(me, deferred);
+            if(isShowAnimation){
+                openingAnimation.call(me, deferred);
+                return;
+            }
+            
+        }
 
-		if(deferred){
-			deferred.resolve();
-		}
-	}
+        if(deferred){
+            deferred.resolve();
+        }
+    }
 
-	function renderMyself(data){
-		var me=this;
-		var $profileMe=me.$element.find("li.ets-profile-me");
+    function renderMyself(data){
+        var me=this;
+        var $profileMe=me.$element.find("li.ets-profile-me");
 
-		if(!data) return;
-		$profileMe.find("img:eq(0)").attr("src",data.img);
-		$profileMe.find(".ets-tooltip-content p:eq(0)").text(data.describe);
-		$profileMe.find(".ets-preson-info img:eq(0)").attr("src", data.profile);
-		$profileMe.find(".ets-preson-info .ets-name").text(data.name);
-		$profileMe.find(".ets-preson-info .ets-location span").text(data.from);
-		
-		//locate position for profile tip and show it ;
-		var $wrapper = $('.ets-act-st');
-		me.edge = $wrapper.offset().left + 980;
-		
-	}
+        if(!data) return;
+        $profileMe.find("img:eq(0)").attr("src",data.img);
+        $profileMe.find(".ets-tooltip-content p:eq(0)").text(data.describe);
+        // $profileMe.find(".ets-preson-info img:eq(0)").attr("src", data.profile);
+        $profileMe.find(".ets-preson-info .ets-name").text(data.name);
+        $profileMe.find(".ets-preson-info .ets-location span").text(data.from);
+        
+        //locate position for profile tip and show it ;
+        var $wrapper = $('.ets-act-st');
+        me.edge = $wrapper.offset().left + 980;
+        
+    }
 
-	function render (deferred) {
-		var me=this;
-		Deferred(function (dfd) {
-			me.html(template, me._json, dfd);
-		}).done(function () {
-			_isRendered=true;
-			if(deferred){
-				deferred.resolve();
-			}
-		});
-	}
+    function render (deferred) {
+        var me=this;
+        Deferred(function (dfd) {
+            me.html(template, me._json, dfd);
+        }).done(function () {
+            _isRendered=true;
+            if(deferred){
+                deferred.resolve();
+            }
+        });
+    }
 
-	function openingAnimation(deferred){
-		var $root=this.$element;
-		var $tooltip= $root.find(".ets-profile-me .ets-tooltip");
-		var $screenShadow= $root.find(".screen-shadow");
+    function openingAnimation(deferred) {
+        var me = this;
+        var $root = me.$element;
+        var $tooltip= $root.find(".ets-profile-me .ets-tooltip");
 
-		$root.find('.ets-profile-me a').trigger('click');
-		$tooltip.animate({opacity: "0.001"}, 0);
-		$screenShadow.show().animate({
-		   opacity:"0", 
-		}, 500, function(){
-			$tooltip.show().animate({ opacity:"1" }, 200, function(){
-				$screenShadow.hide();
-				if(deferred){
-					deferred.resolve();
-				};
-			});
-		});
-	}
+        $tooltip.show().animate({ opacity:1 }, 200, function(){
+            if(deferred){
+                deferred.resolve();
+            };
+        });
+        
+    }
 
-	function endingAnimation(deferred){
-		var $tooltip= this.$element.find(".ets-profile-me .ets-tooltip");
-		var $screenShadow= this.$element.find(".screen-shadow");
+    function endingAnimation(deferred){
+        var me = this;
+        var $tooltip= me.$element.find(".ets-profile-me .ets-tooltip");
+        var $screenShadow= me.$element.find(".screen-shadow");
 
-		$screenShadow.show().animate({
-		   	opacity:"1", 
-		}, 500, function(){
-			$tooltip.animate({ opacity: "0.01", width: "toggle", height: "100%" }, 300 ,function(){
-				if(deferred){
-					deferred.resolve();
-				};
-			});
-		});
-	}
+        $tooltip.animate({
+            opacity: 0
+        }, 300, function () {
+            if (deferred) {
+                deferred.resolve();
+            }
+        });
+    }
 
-	return Widget.extend({
-		"sig/initialize": function (signal, deferred) {
-			var me=this;
+    return Widget.extend({
+        "sig/initialize": function (signal, deferred) {
+            var me=this;
 
-			Deferred(function (dfd) {
-				loadProfiles.call(me,dfd);
-			}).done(function () {
-				var data= me.$element.data("d");
-				updateMyProfile.call(me, data, deferred);
-			});
-		},
+            Deferred(function (dfd) {
+                loadProfiles.call(me,dfd);
+            }).done(function () {
+                var data= me.$element.data("d");
+                updateMyProfile.call(me, data, deferred);
+            });
+        },
 
-		"sig/start": function(signal, deferred) {
-			var me=this;
-			render.call(me, deferred);
-		},
+        "sig/start": function(signal, deferred) {
+            var me=this;
+            render.call(me, deferred);
+        },
 
-		"hub/st/picture-wall/reload": function(topic, data){
-			var me=this;
-			if(data){
-				updateMyProfile.call(me, data);
-			};
-		},
+        "hub/st/picture-wall/reload": function(topic, data){
+            var me=this;
+            if(data){
+                updateMyProfile.call(me, data);
+            };
+        },
+        'hub/st/picture-wall/show/myself': function (topic) {
+            var me = this;
+            console.log('show');
 
-		"dom/action.click":$.noop,
+            me.$element.find('.ets-profile-me a').trigger('click');
+        },
+
+        "dom/action.click":$.noop,
 
         'dom/action/profile/item.click': function (topic, $e) {
             var me = this;
@@ -182,35 +181,34 @@ define([
 
             $e.preventDefault();
         },
-		
-		"dom/action/edit-profile.click":function (topic, $e, index) {
-			var me=this;
-			var data={};
-			$(me._json).each(function (index, profile) {
-				if(profile.isMe){
-					data.imageUrl= profile.img;
-					data.desc= profile.describe;
-				};
-			});
-			
-			Deferred(function(dfd){
-				endingAnimation.call(me, dfd);
-				return;
-			}).done(function(){
-				me.publish("share-and-describe-screen/show", data);
-			});
-			
-			$e.preventDefault();
-		},
-		
-		'dom/action/friend/add.click': function (topic, $e) {
+        
+        "dom/action/edit/profile.click":function (topic, $e, index) {
+            var me=this;
+            var data={};
+            $(me._json).each(function (index, profile) {
+                if(profile.isMe){
+                    data.imageUrl= profile.img;
+                    data.desc= profile.describe;
+                };
+            });
+            
+            Deferred(function(dfd){
+                endingAnimation.call(me, dfd);
+            }).done(function(){
+                me.publish("share-and-describe-screen/show", data);
+            });
+            
+            $e.preventDefault();
+        },
+        
+        'dom/action/friend/add.click': function (topic, $e) {
             var $target = $($e.target);
 
-            $target.addClass('ets-disabled').text('Friend request sent')
+            $target.addClass('ets-disabled').find('span').text('Friend request sent')
             .removeAttr('data-action');
 
             $e.preventDefault();
         }
-	});
+    });
 
 });

@@ -144,6 +144,17 @@
             padding: 5px 5px 0 0;
             box-shadow: inset -1px 1px 2px rgba(0, 0, 0, 0.2), inset 0 -1px 1px rgba(255, 255, 255, 0.4);
 
+
+            &.ets-focus {
+                textarea,
+                #input-describe_counter {
+                    border-color: #00ccff;
+                }
+                #input-describe_counter {
+                    .box-shadow(-1px 1px 1px #00ccff);
+                }
+            }
+
             .ets-tooltip {
                 display: block;
                 font-size: 14px;
@@ -170,6 +181,7 @@
                 color: #5a5a5a;
                 .border-radius(0 5px 0 0);
                 .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.2));
+                outline: none;
             }
 
             #input-describe_counter {
@@ -215,18 +227,8 @@
         }
     }
     
-    .picture-wall-screen{
+    .picture-wall-screen {
         position:relative;
-    }
-    .screen-shadow{
-        position: absolute;
-        opacity: .9;
-        height: 420px;
-        width: 980px;
-        z-index: 0;
-        top: -10px;
-        left:0px;
-        background-color: #CDD2D8;
     }
 
     .ets-profile-wall {
@@ -342,7 +344,8 @@
     }
 
     .ets-msg-box {
-        .size(225px, 205px);
+        // .size(225px, 205px);
+        width: 225px;
         top: 50%;
         left: 50%;
         margin: -112px 0 0 -102px;

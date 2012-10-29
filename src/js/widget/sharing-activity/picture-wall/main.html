@@ -19,13 +19,13 @@
 
                 <p class="ets-tooltip-btns">
                     <%if (data[i].isMe) {%>
-                    <span class="ets-btn-small ets-btn-white ets-btn-shadowed" data-action="edit-profile">
+                    <span class="ets-btn-small ets-btn-white ets-btn-shadowed" data-action="edit/profile">
                         <span>Edit your entry</span>
                     </span>
                     <%} else {%>
                     <%if (data[i].friendStatus===-1) {%>
                     <span class="ets-btn-small ets-btn-white ets-btn-shadowed" data-action="friend/add">
-                        <span>Add to friend</span>
+                        <span>Add to friends</span>
                     </span>
                     <%} else if (data[i].friendStatus===0) {%>
                     <span class="ets-btn-small ets-btn-white ets-btn-shadowed ets-disabled">
@@ -43,6 +43,4 @@
     </li>
     <% } %>
 </ul>
-<div class="screen-shadow ets-none">
-</div>
 <div class="ets-msg-box" data-weave="widget/sharing-activity/picture-wall/complete-msg/main"></div>

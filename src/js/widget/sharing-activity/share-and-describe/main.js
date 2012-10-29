@@ -268,7 +268,7 @@ define(['compose',
 		},
 
 		// dom interaction
-        'dom/action.input.click.focusin.focusout.mouseout.mouseover': $.noop,
+        'dom/action.input.click.focusin.focusout': $.noop,
 
         //change image
 		"dom/action/image/change.click":function(topic, $e, index){
@@ -299,7 +299,19 @@ define(['compose',
             }else{
                 $describeCounter.removeClass('ets-warning');
             }
-		}
+		},
+        'dom/action/describe.focusin': function (topic, $e) {
+            var me = this;
+            var $target = $($e.target);
+
+            $target.closest('.ets-describe-area').addClass('ets-focus');
+        },
+        'dom/action/describe.focusout': function (topic, $e) {
+            var me = this;
+            var $target = $($e.target);
+
+            $target.closest('.ets-describe-area').removeClass('ets-focus');
+        }
 
 	});
 

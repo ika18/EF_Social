@@ -24,7 +24,7 @@ define([
             });
 
             //show my profile
-            $('.ets-profile-me a').trigger('click');
+            me.publish('st/picture-wall/show/myself');
         }
     });
 });
