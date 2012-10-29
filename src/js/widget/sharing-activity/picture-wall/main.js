@@ -160,6 +160,8 @@ define([
             var $li = $target.closest('li');
             var $tooltip = $target.next();
 
+            me.publish('st/picture-wall/complete/close');
+
             $li.siblings().removeClass('ets-on').end()
             .toggleClass('ets-on');
 

@@ -5,6 +5,13 @@ define([
     'troopjs-utils/deferred'
 ], function DemoModule($, Widget, template, Deferred) {
 
+    function close() {
+        var me = this;
+        me.$element.fadeOut('fast', function () {
+            me.unweave();
+        });
+    }
+
     function render(deferred) {
         var me = this;
         me.html(template, {}, deferred);
@@ -19,12 +26,13 @@ define([
         'dom/action/complete/close.click': function (topic, $e) {
             var me = this;
 
-            me.$element.fadeOut('fast', function () {
-                me.unweave();
-            });
+            close.call(me);
 
             //show my profile
             me.publish('st/picture-wall/show/myself');
+        },
+        'hub/st/picture-wall/complete/close': function (topic, $e) {
+            close.call(this);
         }
     });
 });
