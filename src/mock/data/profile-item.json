@@ -2,6 +2,7 @@
     {
         "img": "",
         "describe": "",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-10.png",
         "name": "Qiang",
         "from": "China",
@@ -10,14 +11,16 @@
     {
         "img": "mock/image/defaultOptions/chinese_s.jpg",
         "describe": "I am from Germany and I just love Chineese food!",
+        "flag": "mock/image/sw-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-2.jpg",
         "name": "Karl",
-        "from": "Berlin, Germany",
+        "from": "Sweden",
         "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/hamburger_s.jpg",
         "describe": "My favourite food is hamburgers. I love american food!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-6.jpg",
         "name": "Jacky",
         "from": "Shanghai, China",
@@ -26,6 +29,7 @@
     {
         "img": "mock/image/defaultOptions/frenchfries_s.jpg",
         "describe": "I think french fries tastes really good with ketchup. I would love to go to France some day!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/frenchfries_s.jpg",
         "name": "Tony",
         "from": "Shanghai, China",
@@ -34,6 +38,7 @@
     {
         "img": "mock/image/defaultOptions/pasta_s.jpg",
         "describe": "Italian food is the best! Spagethi bolognese is my favourite dish",
+        "flag": "mock/image/it-flag.png",
         "profile": "mock/image/defaultOptions/profile-3.jpg",
         "name": "Lorenzo",
         "from": "Italy",
@@ -42,6 +47,7 @@
     {
         "img": "mock/image/defaultOptions/pizza_s.jpg",
         "describe": "I like cheese and bread, so Pizza is the perfect dish for me! Yum!",
+        "flag": "mock/image/ca-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-7.png",
         "name": "Brian",
         "from": "Canada",
@@ -50,6 +56,7 @@
     {
         "img": "mock/image/defaultOptions/sallad_s.jpg",
         "describe": "I always try to eat healthy food, so for me a sallad is the perfect choise! It's green and fresh.",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-5.jpg",
         "name": "Daniel",
         "from": "China",
@@ -58,6 +65,7 @@
     {
         "img": "mock/image/defaultOptions/salmon_s.jpg",
         "describe": "For me fish is the best dish. I eat any fish, but I think Salmon is the best.",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-4.jpg",
         "name": "Ika",
         "from": "China",
@@ -66,6 +74,7 @@
     {
         "img": "mock/image/defaultOptions/seafood_s.jpg",
         "describe": "I live near the coast, and we always have fresh seafood. Grilled prawns is my absolute favourite",
+        "flag": "mock/image/sw-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-9.png",
         "name": "Richard",
         "from": "Stockholm, Sweden",
@@ -74,6 +83,7 @@
     {
         "img": "mock/image/defaultOptions/sushi_s.jpg",
         "describe": "Sushi is so fresh and the perfect food in the summer. That is my favourite!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-1.jpg",
         "name": "Ophelia",
         "from": "Shanghai, China",
@@ -82,6 +92,7 @@
     {
         "img": "mock/image/defaultOptions/toast_s.jpg",
         "describe": "Every morning I start with a toast. I like it very much because I can put whatever I want in it!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-8.png",
         "name": "Kenny",
         "from": "China",
@@ -90,14 +101,16 @@
     {
         "img": "mock/image/defaultOptions/chinese_s.jpg",
         "describe": "I am from Germany and I just love Chineese food!",
+        "flag": "mock/image/sw-flag.jpg",
         "profile": "mock/image/defaultOptions/chinese_s.jpg",
         "name": "Karl",
-        "from": "Berlin, Germany",
+        "from": "Sweden",
         "friendStatus": -1
     },
     {
         "img": "mock/image/defaultOptions/hamburger_s.jpg",
         "describe": "My favourite food is hamburgers. I love american food!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-6.jpg",
         "name": "Jacky",
         "from": "Shanghai, China",
@@ -106,6 +119,7 @@
     {
         "img": "mock/image/defaultOptions/frenchfries_s.jpg",
         "describe": "I think french fries tastes really good with ketchup. I would love to go to France some day!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/frenchfries_s.jpg",
         "name": "Tony",
         "from": "Shanghai, China",
@@ -114,6 +128,7 @@
     {
         "img": "mock/image/defaultOptions/pasta_s.jpg",
         "describe": "Italian food is the best! Spagethi bolognese is my favourite dish",
+        "flag": "mock/image/it-flag.png",
         "profile": "mock/image/defaultOptions/profile-3.jpg",
         "name": "Lorenzo",
         "from": "Italy",
@@ -122,6 +137,7 @@
     {
         "img": "mock/image/defaultOptions/pizza_s.jpg",
         "describe": "I like cheese and bread, so Pizza is the perfect dish for me! Yum!",
+        "flag": "mock/image/ca-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-7.png",
         "name": "Brian",
         "from": "Canada",
@@ -130,6 +146,7 @@
     {
         "img": "mock/image/defaultOptions/sallad_s.jpg",
         "describe": "I always try to eat healthy food, so for me a sallad is the perfect choise! It's green and fresh.",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-5.jpg",
         "name": "Daniel",
         "from": "China",
@@ -138,6 +155,7 @@
     {
         "img": "mock/image/defaultOptions/salmon_s.jpg",
         "describe": "For me fish is the best dish. I eat any fish, but I think Salmon is the best.",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-4.jpg",
         "name": "Ika",
         "from": "China",
@@ -146,6 +164,7 @@
     {
         "img": "mock/image/defaultOptions/seafood_s.jpg",
         "describe": "I live near the coast, and we always have fresh seafood. Grilled prawns is my absolute favourite",
+        "flag": "mock/image/sw-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-9.png",
         "name": "Richard",
         "from": "Stockholm, Sweden",
@@ -154,6 +173,7 @@
     {
         "img": "mock/image/defaultOptions/sushi_s.jpg",
         "describe": "Sushi is so fresh and the perfect food in the summer. That is my favourite!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-1.jpg",
         "name": "Ophelia",
         "from": "Shanghai, China",
@@ -162,6 +182,7 @@
     {
         "img": "mock/image/defaultOptions/toast_s.jpg",
         "describe": "Every morning I start with a toast. I like it very much because I can put whatever I want in it!",
+        "flag": "mock/image/cn-flag.jpg",
         "profile": "mock/image/defaultOptions/profile-8.png",
         "name": "Kenny",
         "from": "China",

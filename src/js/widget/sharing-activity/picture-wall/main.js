@@ -148,7 +148,6 @@ define([
         },
         'hub/st/picture-wall/show/myself': function (topic) {
             var me = this;
-            console.log('show');
 
             me.$element.find('.ets-profile-me a').trigger('click');
         },
