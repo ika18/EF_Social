@@ -54,7 +54,6 @@ define([
             
             //show openning animation
             var isShowAnimation=(me.$element.find(".ets-msg-box").css("display"))=="none";
-            //openingAnimation.call(me, deferred);
             if(isShowAnimation){
                 openingAnimation.call(me, deferred);
                 return;
@@ -74,7 +73,6 @@ define([
         if(!data) return;
         $profileMe.find("img:eq(0)").attr("src",data.img);
         $profileMe.find(".ets-tooltip-content p:eq(0)").text(data.describe);
-        // $profileMe.find(".ets-preson-info img:eq(0)").attr("src", data.profile);
         $profileMe.find(".ets-preson-info .ets-name").text(data.name);
         $profileMe.find(".ets-preson-info .ets-location span").text(data.from);
         
@@ -101,7 +99,9 @@ define([
         var $root = me.$element;
         var $tooltip= $root.find(".ets-profile-me .ets-tooltip");
 
-        $tooltip.show().animate({ opacity:1 }, 200, function(){
+        $tooltip.css({"opacity": 0}).parent("li").addClass("ets-on");
+
+        $tooltip.animate({ opacity:1 }, 200, function(){
             if(deferred){
                 deferred.resolve();
             };
@@ -112,7 +112,6 @@ define([
     function endingAnimation(deferred){
         var me = this;
         var $tooltip= me.$element.find(".ets-profile-me .ets-tooltip");
-        var $screenShadow= me.$element.find(".screen-shadow");
 
         $tooltip.animate({
             opacity: 0
