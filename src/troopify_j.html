@@ -3,11 +3,42 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Troopify share Template</title>
-	<link rel="stylesheet/less" type="text/css" href="/css/ets-global.less" />
-	<script type="text/javascript" src='/_shared/less/1.3.0/less.min.js'></script>
-	<script data-main='/js/app.js' type="text/javascript" src="/_shared/require.js/2.0.4/require.js"></script>
+	<link rel="stylesheet/less" type="text/css" href="/css/ets-global-j.less" />
+	<script type="text/javascript" src='/_shared/less/1.3.0/less.min.js'></script>	
+	<link rel="stylesheet" type="text/css" href="mock/stylesheet/example-page.css" media="all" />
 </head>
 <body>	
-	<div data-weave="" data-type="weave"></div>
+	 <header>
+        <section>
+            <img src="mock/image/logo.png" alt="EF" id="logo">
+        </section>
+    </header>
+    <div id="title">
+        <div class="container ets-cf">
+            <div id="l">
+                Sharing Template
+            </div>
+            <div id="r">
+                Version: <strong>0.1</strong>
+            </div>
+        </div>
+    </div>
+	 <section class="page">
+	        <div id="template-wrapper">
+	            <div id="template-wrapper-inner">
+	                <div class="ets-activity">
+						<div data-weave="widget/demo" data-type="weave"></div>
+	                </div>
+	            </div>
+	        </div>
+
+	        <div style="margin-top: 10px; text-align: center;">
+	            <div class="ets-btn ets-btn-white ets-disabled ets-act-st" id="next-step">
+	                <div>Next Step</div>
+	            </div>
+	        </div>
+	        
+	    </section>
+	<script data-main='/_troopifyJs/app.js' type="text/javascript" src="/_shared/require.js/2.0.4/require.js"></script>
 </body>
 </html>
