@@ -182,9 +182,10 @@ define([
             $e.preventDefault();
         },
         
-        "dom/action/edit/profile.click":function (topic, $e, index) {
-            var me=this;
-            var data={};
+        "dom/action/edit/profile.click":function (topic, $e) {
+            var me = this;
+            var data = {};
+
             $(me._json).each(function (index, profile) {
                 if(profile.isMe){
                     data.imageUrl= profile.img;

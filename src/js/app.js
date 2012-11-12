@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        "troopjs-bundle": "lib/troopjs/troopjs-bundle",
+        "troopjs-bundle": "../_shared/troopjs-bundle/1.0.5-23/troopjs-bundle.min",
         "jquery" : "../_shared/jquery/1.7.2/jquery.min",
         "jquery.ui": "../_shared/jquery-ui/1.8.22/jquery-ui.min",
 

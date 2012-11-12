@@ -8,7 +8,8 @@ define([
     function close() {
         var me = this;
         me.$element.fadeOut('fast', function () {
-            me.unweave();
+            // TODO: why can't unweave in IE8?
+            // me.unweave();
         });
     }
 
