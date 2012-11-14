@@ -5,7 +5,15 @@
             <img src="<%=data[i].img%>">
             <div class="ets-shadow"></div>
         </a>
+        <!--[if lte IE 8]>
+        <div class="ets-tooltip ets-tooltip-ie8 ets-left-arrow">
+        <![endif]-->
+        <!--[if gt IE 8]>
         <div class="ets-tooltip ets-left-arrow">
+        <![endif]-->
+        <!--[if !IE]> -->
+        <div class="ets-tooltip ets-left-arrow">
+        <!-- <![endif]-->
             <div class="ets-tooltip-content">
                 <p><%=data[i].describe%></p>
 

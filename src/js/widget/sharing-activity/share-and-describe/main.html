@@ -11,10 +11,21 @@
             </div>
         </div>
         <div class="ets-describe-area ets-none">
+            <!--[if lte IE 8]>
+            <div class="ets-tooltip ets-tooltip-ie8">
+            <![endif]-->
+            <!--[if gt IE 8]>
             <div class="ets-tooltip">
+            <![endif]-->
+            <!--[if !IE]> -->
+            <div class="ets-tooltip">
+            <!-- <![endif]-->
                 <div class="ets-tooltip-content">
                     Type in the description of your favorite food in the text box below.
                 </div>
+                <!--[if lte IE 8]>
+                <div class="ets-tooltip-footer"></div>
+                <![endif]-->
             </div>
             <textarea id="input-describe" cols="30" rows="10" data-weave="widget/plugins/textchange/main" data-action="describe"></textarea>
              
